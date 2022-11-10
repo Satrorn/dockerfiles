@@ -33,6 +33,12 @@ jobs:
   build:
     # 选择虚拟环境
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - DOCKER_TAG: latest
    
     # 运行步骤
     steps:
@@ -73,6 +79,7 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           context: ${{ github.event.inputs.project }}
+          file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -96,10 +103,10 @@ jobs:
           registry_url: '${{ secrets.ALIYUN_REGISTRY }}'
           namespaces: '${{ secrets.ALIYUN_PROJECT_NAME }}'
           repository_name: '${{ github.event.inputs.name }}'
-          user_name: ${{ secrets.ALIYUN_USERNAME }}
+          username: ${{ secrets.ALIYUN_USERNAME }}
           password: ${{ secrets.ALIYUN_PASSWORD }}
-          image_version: ${{ env.tag }}
-          docker_file: '${{ github.event.inputs.project }}/.'
+          image_version: ${{ matrix.DOCKER_TAG }}
+          docker_file: './Dockerfile'
 
       - name: 删除旧的 Workflow
         uses: Mattraks/delete-workflow-runs@main 
