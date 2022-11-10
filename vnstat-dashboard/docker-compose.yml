@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  vnstat-dashboard:
+    image: stilleshan/vnstat-dashboard
+    container_name: vnstat-dashboard
+    volumes:
+      - /usr/bin/vnstat:/usr/bin/vnstat
+      - /var/lib/vnstat:/var/lib/vnstat
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 12345:80
+    environment:
+      TZ: Asia/Shanghai
+    restart: always
+

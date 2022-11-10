@@ -1,0 +1,69 @@
+#---------------------------------------------------#
+# 配置文件需要放置在 $HOME/.config/clash/config.yml
+# 或者运行目录下的config.yml
+#---------------------------------------------------#
+# HTTP 代理端口
+# port: 7890
+
+# SOCKS5 代理端口
+socks-port: 7891
+
+# Linux 和 macOS 的透明代理服务器端口（重定向 TCP 和 TProxy UDP）
+redir-port: 7892
+
+# Linux 的透明代理服务器端口（TProxy TCP 和 TProxy UDP）
+tproxy-port: 7893
+
+# HTTP 和 SOCKS4(A)/SOCKS5 服务器在同一端口
+mixed-port: 7890
+
+# 本地 SOCKS5 / HTTP(S) 服务认证
+#authentication:
+# - "admin:@admin123"
+
+# 允许局域网的连接（可用来共享代理）
+allow-lan: true
+
+# 仅在将allow-lan设置为true时适用
+# #"*": 绑定所有IP地址
+# #192.168.122.11: 绑定单个IPv4地址
+# #"[aaaa::a8aa:ff:fe09:57d8]": 绑定单个IPv6地址
+bind-address: "*"
+ipv6: true
+
+# 规则模式：rule（规则） / global（全局代理）/ direct（全局直连）/ script (脚本)
+# mode: script
+
+# 设置日志输出级别 (默认级别：silent，即不输出任何内容，以避免因日志内容过大而导致程序内存溢出）。
+# 5 个级别：silent / error / warning / info / debug。级别越高日志输出量越大，越倾向于调试，若需要请自行开启。
+log-level: info
+
+# Clash 的 RESTful API
+external-controller: ':9090'
+
+# 您可以将静态网页资源（如 clash-dashboard）放置在一个目录中，clash 将会服务于 `RESTful API/ui`
+# 参数应填写配置目录的相对路径或绝对路径。
+# http://127.0.0.1:9090/ui/#/
+# external-ui: folder
+# yacd面板：  https://github.com/haishanh/yacd
+# Razord面板：http://clash.razord.top/#/proxies
+# external-ui: dashboard
+
+# RESTful API 的口令 (可选)
+secret: "@admin123"
+
+# 实验性功能
+experimental:
+  ignore-resolve-fail: true # 忽略 DNS 解析失败，默认值为 true
+  # interface-name: eth0 # 绑定接口名称
+
+# fwmark on Linux only 
+routing-mark : 0x162
+
+cfw-latency-timeout: 3000
+cfw-latency-url: http://www.gstatic.com/generate_204      
+cfw-conn-break-strategy:
+  proxy: none
+  profile: true
+  mode: false
+cfw-proxies-order: default
