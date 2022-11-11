@@ -3,14 +3,7 @@ name: 编译镜像
 
 # 设置触发条件
 on:
-  # 仓库触发工作流
-  #repository_dispatch:
-  # 编辑文件触发开始编译
-#  push:
-#    paths:
-#     - Dockerfile
-#     - .github/workflows/build.yml
-  # 手动触发工作流
+# 手动触发工作流
   workflow_dispatch:
     inputs:
       project:
@@ -23,8 +16,10 @@ on:
         required: true
       # 定时请填写default参数
         default: 'latest'
+
 # 仓库触发工作流
 #  repository_dispatch:
+
 # 编辑文件触发开始编译
 # main分支的push操作会触发当前脚本的执行
   push:
@@ -35,9 +30,11 @@ on:
 # main分支的pr操作会触发当前脚本的执行
   pull_request:
     branches: [ master ]
+
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
 #  schedule:
 #    - cron: '0 16 * * *'
+
 # 点击star时开始任务
 #  watch:
 #    types: started
