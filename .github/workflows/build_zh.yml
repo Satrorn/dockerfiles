@@ -8,9 +8,9 @@ on:
     inputs:
       project:
         description: 'project'
-        required: true
+        required: false
       # 定时请填写default参数
-        default: 'zh'
+        default: ''
       tag:
         description: 'tag'
         required: true
@@ -21,14 +21,16 @@ on:
 #  repository_dispatch:
 
 # 编辑文件触发开始编译
-# master分支的push操作会触发当前脚本的执行
+# main分支的push操作会触发当前脚本的执行
   push:
     branches: [ master ]
     paths:
+#      - Dockerfile
       - .github/workflows/build_zh.yml
+
 # main分支的pr操作会触发当前脚本的执行
-#  pull_request:
-#    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
 #  schedule:
@@ -79,7 +81,7 @@ jobs:
         # AUTO_UPDATE_TAG : satrorn/XXX:20221111
         # AUTO_UPDATE_ALI : registry.cn-shenzhen.aliyuncs.com/inc/satrorn/XXX:20221111
         run: |
-          IMAGE_NAME=${{ github.event.inputs.project }}
+          IMAGE_NAME=zh
           ALI_ADD=registry.cn-shenzhen.aliyuncs.com
 
           TIME_VERSION=${{ env.tag }}
@@ -120,10 +122,9 @@ jobs:
 
       # 构建Amd64和Arm64的镜像
       - name: 构建和推送
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
-          context: .
-          file: zh/Dockerfile
+          context: ${{ github.event.inputs.project }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
