@@ -121,7 +121,7 @@ jobs:
 
       # 构建Amd64和Arm64的镜像
       - name: 构建和推送
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v2
         with:
           context: ${{ github.event.inputs.project }}
           platforms: linux/amd64,linux/arm64
