@@ -17,7 +17,7 @@ on:
         description: 'project'
         required: true
       # 定时请填写default参数
-        default: ''
+        default: 'zh'
       tag:
         description: 'tag'
         required: true
@@ -29,9 +29,9 @@ on:
 # main分支的push操作会触发当前脚本的执行
   push:
     branches: [ master ]
-#    paths:
-#      - Dockerfile
-#      - .github/workflows/build_zh.yml
+    paths:
+      - Dockerfile
+      - .github/workflows/build_zh.yml
 # main分支的pr操作会触发当前脚本的执行
   pull_request:
     branches: [ master ]
