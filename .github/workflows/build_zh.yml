@@ -23,10 +23,10 @@ on:
 # 编辑文件触发开始编译
 # main分支的push操作会触发当前脚本的执行
   push:
-    branches: [ master ]
- #   paths:
-#      - Dockerfile
-#      - .github/workflows/build_zh.yml
+#    branches: [ master ]
+    paths:
+      - Dockerfile
+      - .github/workflows/build_zh.yml
 
 # main分支的pr操作会触发当前脚本的执行
 #  pull_request:
