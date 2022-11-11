@@ -16,12 +16,12 @@ on:
         description: 'project'
         required: true
       # 定时请填写default参数
-        default: ''
+        default:
       tag:
         description: 'tag'
         required: true
       # 定时请填写default参数
-        default: 'latest'
+        default:
   # main分支的push操作会触发当前脚本的执行
 #  push:
 #    branches: [ master ]
