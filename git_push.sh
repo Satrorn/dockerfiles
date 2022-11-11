@@ -6,8 +6,6 @@ echo ".登陆状态"
 git remote -v
 git add .
 echo ".文件准备完成"
-git pull origin
-echo ".文件下载完成"
 git commit -m "提交代码：${remark}"
 git push -u origin master
 git reset --hard origin/master
