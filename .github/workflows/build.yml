@@ -6,9 +6,10 @@ on:
   # 仓库触发工作流
   #repository_dispatch:
   # 编辑文件触发开始编译
-  #push:
-  #  paths:
-  #    - 'Dockerfile'
+#  push:
+#    paths:
+#     - Dockerfile
+#     - .github/workflows/build.yml
   # 手动触发工作流
   workflow_dispatch:
     inputs:
@@ -117,7 +118,7 @@ jobs:
      
       # 构建Amd64和Arm64的镜像
       - name: 构建和推送
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ${{ github.event.inputs.project }}
           platforms: linux/amd64,linux/arm64
