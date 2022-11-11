@@ -8,9 +8,9 @@ on:
     inputs:
       project:
         description: 'project'
-        required: false
+        required: true
       # 定时请填写default参数
-        default: ''
+        default: 'zh'
       tag:
         description: 'tag'
         required: true
