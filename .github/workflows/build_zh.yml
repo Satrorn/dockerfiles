@@ -24,13 +24,13 @@ on:
 # main分支的push操作会触发当前脚本的执行
   push:
     branches: [ master ]
-    paths:
+ #   paths:
 #      - Dockerfile
-      - .github/workflows/build_zh.yml
+#      - .github/workflows/build_zh.yml
 
 # main分支的pr操作会触发当前脚本的执行
-  pull_request:
-    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
 #  schedule:
