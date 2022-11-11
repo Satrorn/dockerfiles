@@ -49,22 +49,15 @@ jobs:
    
     # 运行步骤
     steps:
-    
-    # 检出master分支
-      - name: 检出各个模块代码
-        uses: actions/checkout@v2.3.5
-        with:
-          fetch-depth: 0
+      # 检出master分支
+      - name: 出各个模块代码
+        uses: actions/checkout@v3
 
       - name: 安装 QEMU
-        uses: docker/setup-qemu-action@v1
-        with:
-          platforms: all
+        uses: docker/setup-qemu-action@v2
 
       - name: 安装 docker buildx
-        uses: docker/setup-buildx-action@v2.0.0
-        with:
-          version: latest
+        uses: docker/setup-buildx-action@v2
 
       - name: 日期版本号
         id: tag
@@ -113,7 +106,7 @@ jobs:
           echo "auto_update_ali=${AUTO_UPDATE_ALI}" >> $GITHUB_OUTPUT
       # 登录到DOCKERHUB
       - name: 登陆DOCKERHUB
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
