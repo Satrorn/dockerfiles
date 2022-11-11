@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 编译镜像
+name: 编译镜像(订阅)
 
 # 设置触发条件
 on:

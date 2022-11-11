@@ -1,5 +1,7 @@
 #!/bin/sh
 #脚本功能：从提交最新代码到git
+find /volume1/docker/dockerfiles* -name "@eaDir" -type d -print0 | xargs -0 rm -rf
+echo "删除@eaDir完成"
 ssh -T git@github.com
 remark=$(date +"%Y-%m-%d %H:%M:%S")
 echo ".登陆状态"
