@@ -40,12 +40,6 @@ jobs:
   build:
     # 选择虚拟环境
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    strategy:
-      fail-fast: true
-      matrix:
-        include:
-          - DOCKER_TAG: latest
    
     # 运行步骤
     steps:
@@ -89,20 +83,23 @@ jobs:
           DOCKERHUB_VERSION=${{ github.event.inputs.tag }}
           
           TAG_VERSION="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
-          TAG_LATEST="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${{ matrix.DOCKER_TAG }}"
+          TAG_LATEST="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:latest"
           
           ALI_VERSION="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
-          ALI_LATEST="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:${{ matrix.DOCKER_TAG }}"
+          ALI_LATEST="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:latest"
           
           AUTO_UPDATE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${TIME_VERSION}"
           AUTO_UPDATE_ALI="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:${TIME_VERSION}"
+          
           echo "time_version=${TIME_VERSION}" >> $GITHUB_OUTPUT
           echo "dockerhub_version=${DOCKERHUB_VERSION}" >> $GITHUB_OUTPUT
+          
           echo "tag_version=${TAG_VERSION}" >> $GITHUB_OUTPUT
           echo "tag_latest=${TAG_LATEST}" >> $GITHUB_OUTPUT
         
           echo "ali_version=${ALI_VERSION}" >> $GITHUB_OUTPUT
           echo "ali_latest=${ALI_LATEST}" >> $GITHUB_OUTPUT
+          
           echo "auto_update_tag=${AUTO_UPDATE_TAG}" >> $GITHUB_OUTPUT
           echo "auto_update_ali=${AUTO_UPDATE_ALI}" >> $GITHUB_OUTPUT
           
