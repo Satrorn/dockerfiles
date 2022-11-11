@@ -61,8 +61,8 @@ jobs:
       - name: 日期版本号
         id: tag
         run: |
-          if [[ -n $(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
-            VERSION=$(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
+          if [[ -n $(cat zh/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
+            VERSION=$(cat zh/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
             echo "tag=$VERSION" >> $GITHUB_ENV
           else
             echo "tag=$(date +%Y)$(date +%m)$(date +%d)" >> $GITHUB_ENV
@@ -85,7 +85,7 @@ jobs:
           ALI_ADD=registry.cn-shenzhen.aliyuncs.com
 
           TIME_VERSION=${{ env.tag }}
-          DOCKERHUB_VERSION=${{ github.event.inputs.tag }}
+          DOCKERHUB_VERSION=latest
 
           TAG_VERSION="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
           TAG_LATEST="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:latest"
