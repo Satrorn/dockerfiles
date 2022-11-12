@@ -69,6 +69,7 @@ WORKDIR /app
 
 RUN set -eux \
     && cp /sub-web/package.json /app \
+    && npm i yarn -g \
     && yarn install
 
 # ##############################################################################
