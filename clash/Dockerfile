@@ -5,7 +5,7 @@
 FROM alpine:latest AS builder
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ
@@ -14,7 +14,7 @@ ARG LANG=C.UTF-8
 ENV LANG=$LANG
 
 # 镜像变量
-ARG DOCKER_IMAGE=danxiaonuo/clash
+ARG DOCKER_IMAGE=satrorn/clash
 ENV DOCKER_IMAGE=$DOCKER_IMAGE
 ARG DOCKER_IMAGE_OS=alpine
 ENV DOCKER_IMAGE_OS=$DOCKER_IMAGE_OS
@@ -55,12 +55,12 @@ RUN set -eux \
 ##########################################
 #         构建基础镜像                    #
 ##########################################
-# 
+#
 # 指定创建的基础镜像
 FROM alpine:latest
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ
