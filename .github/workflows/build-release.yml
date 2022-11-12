@@ -7,33 +7,33 @@ name: 自动编译(Sub-Web)镜像
 # 设置触发条件
 on:
 # 手动触发工作流
-  workflow_dispatch:
-    inputs:
-      project:
-        description: 'project'
-        required: true
+#  workflow_dispatch:
+#    inputs:
+#      project:
+#        description: 'project'
+#        required: true
       # 定时请填写default参数
-        default: ''
-      tag:
-        description: 'tag'
-        required: true
+#        default: ''
+#      tag:
+#        description: 'tag'
+ #       required: true
       # 定时请填写default参数
-        default: 'latest'
+#        default: 'latest'
 
 # 仓库触发工作流
 #  repository_dispatch:
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
-  push:
-    branches: [ master ]
-    paths:
-      - 'Dockerfile'
-      - '.github/workflows/build-release.yml'
+#  push:
+#    branches: [ master ]
+#    paths:
+#      - 'Dockerfile'
+#      - '.github/workflows/build-release.yml'
 
 # master分支的pr操作会触发当前脚本的执行
-  pull_request:
-    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
   schedule:
@@ -52,7 +52,7 @@ jobs:
     # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
     env:
       PROJECT: subweb
-      TAGS: v2022
+      TAGS: v1.0
   
     # 运行步骤
     steps:
@@ -135,7 +135,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: .
+          context: ${{ env.PROJECT }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
