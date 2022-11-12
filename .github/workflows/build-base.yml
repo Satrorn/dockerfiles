@@ -50,8 +50,8 @@ jobs:
     
     # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
     env:
-      PROJECT: subweb
-      TAGS: v2022
+      PROJECT: clash
+      TAGS: latest
   
     # 运行步骤
     steps:
