@@ -137,7 +137,6 @@ jobs:
           # 项目自动和手动切换处
           platforms: linux/amd64,linux/arm64
           file: subweb/Dockerfile
-          context: .
           push: true
           tags: |
             ${{ steps.prepare.outputs.tag_version }}
