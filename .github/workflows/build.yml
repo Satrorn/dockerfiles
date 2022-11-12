@@ -74,12 +74,12 @@ jobs:
         # ALI_ADD ：阿里镜像地址
         # TIME_VERSION ： 日期版本
         # DOCKERHUB_VERSION ： DockerHub 镜像版本
-        # TAG_VERSION ： 标签版本 satrorn/XXX:0.0
-        # TAG_LATEST ： 最新版本 satrorn/XXX:latest
-        # ALI_VERSION ： registry.cn-shenzhen.aliyuncs.com/inc/satrorn/XXX:0.0
-        # ALI_LATEST : registry.cn-shenzhen.aliyuncs.com/inc/satrorn/XXX:latest
-        # AUTO_UPDATE_TAG : satrorn/XXX:20221111
-        # AUTO_UPDATE_ALI : registry.cn-shenzhen.aliyuncs.com/inc/satrorn/XXX:20221111
+        # TAG_VERSION ： 标签版本
+        # TAG_LATEST ： 最新版本
+        # ALI_VERSION ： registry.cn-shenzhen.aliyuncs.com/
+        # ALI_LATEST : registry.cn-shenzhen.aliyuncs.com/
+        # AUTO_UPDATE_TAG : 
+        # AUTO_UPDATE_ALI : registry.cn-shenzhen.aliyuncs.com/inc/satrorn/
         run: |
           IMAGE_NAME=${{ github.event.inputs.project }}
           ALI_ADD=registry.cn-shenzhen.aliyuncs.com
@@ -90,11 +90,11 @@ jobs:
           TAG_VERSION="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
           TAG_LATEST="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:latest"
 
-          ALI_VERSION="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
-          ALI_LATEST="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:latest"
+          ALI_VERSION="${ALI_ADD}/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
+          ALI_LATEST="${ALI_ADD}/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:latest"
 
           AUTO_UPDATE_TAG="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${TIME_VERSION}"
-          AUTO_UPDATE_ALI="${ALI_ADD}/${{ secrets.ALIYUN_NAMESPACES }}/${IMAGE_NAME}:${TIME_VERSION}"
+          AUTO_UPDATE_ALI="${ALI_ADD}/${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${TIME_VERSION}"
 
           echo "time_version=${TIME_VERSION}" >> $GITHUB_OUTPUT
           echo "dockerhub_version=${DOCKERHUB_VERSION}" >> $GITHUB_OUTPUT
@@ -113,12 +113,12 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
 
       # 登录到阿里镜像仓库
       - name: 登陆ALIYUN
         run: |
-          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.ALIYUN_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.PASSWORD }} registry.cn-shenzhen.aliyuncs.com
 
       # 构建Amd64和Arm64的镜像
       - name: 构建和推送
@@ -140,7 +140,7 @@ jobs:
         uses: ms-jpq/sync-dockerhub-readme@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.project }}
           readme: "${{ github.event.inputs.project }}/README.md"
 
