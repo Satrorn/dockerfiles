@@ -67,10 +67,9 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 # 工作目录
 WORKDIR /app
 
-RUN set -eux \
-    && cp /sub-web/package.json /app \
-    && npm i yarn -g \
-    && yarn install
+RUN set -eux 
+RUN cp /sub-web/package.json /app 
+RUN yarn install
 
 # ##############################################################################
     
