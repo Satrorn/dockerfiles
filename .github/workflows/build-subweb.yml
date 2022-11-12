@@ -135,8 +135,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: subweb
           platforms: linux/amd64,linux/arm64
+          file: subweb/Dockerfile
+          context: .
           push: true
           tags: |
             ${{ steps.prepare.outputs.tag_version }}
