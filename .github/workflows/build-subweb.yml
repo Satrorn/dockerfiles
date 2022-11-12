@@ -2,7 +2,7 @@
 # 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
 # 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
 
-name: 自动编译镜像
+name: 自动编译镜像(SubWEB)
 
 # 设置触发条件
 on:
@@ -135,7 +135,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: ${{ env.PROJECT }}
+          context: subweb
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
