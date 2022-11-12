@@ -4,7 +4,7 @@
 FROM alpine:latest as base
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ
@@ -13,7 +13,7 @@ ARG LANG=C.UTF-8
 ENV LANG=$LANG
 
 # 镜像变量
-ARG DOCKER_IMAGE=danxiaonuo/subconverter
+ARG DOCKER_IMAGE=satrorn/subconverter
 ENV DOCKER_IMAGE=$DOCKER_IMAGE
 ARG DOCKER_IMAGE_OS=subconverter
 ENV DOCKER_IMAGE_OS=$DOCKER_IMAGE_OS
@@ -28,7 +28,7 @@ ENV DOCKER_IMAGE_TAG=$DOCKER_IMAGE_TAG
 FROM base AS builder
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ
@@ -71,18 +71,18 @@ RUN set -eux && \
    sed -i -e "s/bin\/ash/bin\/zsh/" /etc/passwd && \
    sed -i -e 's/mouse=/mouse-=/g' /usr/share/vim/vim*/defaults.vim && \
    /bin/zsh
-   
+
 # ##############################################################################
 
 # 工作目录
 WORKDIR /base
-	
+
 # 安装subconverter
 RUN set -eux \
     && wget --no-check-certificate -P /base https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz -O /base/subconverter_linux64.tar.gz \
     && tar xzf subconverter_linux64.tar.gz \
     && rm -rf subconverter_linux64.tar.gz
-	
+
 # 容器信号处理
 STOPSIGNAL SIGQUIT
 

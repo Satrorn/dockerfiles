@@ -1,5 +1,5 @@
 FROM php:7.0-apache
-MAINTAINER Alex Marston <alexander.marston@gmail.com>
+MAINTAINER Satrorn <satrorn@gmail.com>
 
 # Install Git
 RUN apt-get update && apt-get install -y git unzip

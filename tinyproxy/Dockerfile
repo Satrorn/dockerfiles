@@ -1,5 +1,5 @@
 FROM alpine
-LABEL maintainer="Stille <stille@ioiox.com>"
+LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 1.11.0
 

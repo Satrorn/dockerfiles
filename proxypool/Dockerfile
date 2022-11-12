@@ -5,7 +5,7 @@
 FROM golang:alpine AS builder
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ
@@ -18,7 +18,7 @@ ARG TAGS=v0.7.3
 ENV TAGS=$TAGS
 
 # 镜像变量
-ARG DOCKER_IMAGE=danxiaonuo/proxypool
+ARG DOCKER_IMAGE=satrorn/proxypool
 ENV DOCKER_IMAGE=$DOCKER_IMAGE
 ARG DOCKER_IMAGE_OS=golang
 ENV DOCKER_IMAGE_OS=$DOCKER_IMAGE_OS
@@ -59,12 +59,12 @@ RUN git clone --depth=1 -b ${TAGS} --progress https://github.com/Sansui233/proxy
 ##########################################
 #         构建基础镜像                    #
 ##########################################
-# 
+#
 # 指定创建的基础镜像
 FROM alpine:latest
 
 # 作者描述信息
-MAINTAINER danxiaonuo
+MAINTAINER satrorn
 # 时区设置
 ARG TZ=Asia/Shanghai
 ENV TZ=$TZ

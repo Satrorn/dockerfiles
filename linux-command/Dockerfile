@@ -1,5 +1,5 @@
 FROM node:14-alpine as builder
-LABEL maintainer="Stille <stille@ioiox.com>"
+LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 WORKDIR /
 
