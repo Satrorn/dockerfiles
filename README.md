@@ -7,3 +7,5 @@
 - **GitHub** https://github.com/satrorn
 - **Docker Hub** https://hub.docker.com/u/satrorn
 - **Blog** https://www.loip.ml
+
+- 适用于Mac的10个最佳GUI Git客户端 https://www.ngui.cc/zz/800378.html?action=onClick
