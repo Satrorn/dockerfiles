@@ -65,7 +65,7 @@ jobs:
     - name: 构建镜像并发布
       uses: docker/build-push-action@v3
       with:
-        context: dockerfiles/clash
+        context: satrorn/dockerfiles/clash
         file: ./Dockerfile
         platforms: linux/amd64
         push: true
