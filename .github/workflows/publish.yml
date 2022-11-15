@@ -1,12 +1,6 @@
 #=================================================
-# https://github.com/danxiaonuo/proxypool-docker
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: danxiaonuo
-# Blog: https://www.danxiaonuo.com
-#=================================================
 
-name: 自动编译并上传镜像
+name: 自动编译[CLASH]镜像
 
 # 设置触发条件
 on:
