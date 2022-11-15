@@ -79,7 +79,7 @@ jobs:
         user_name: ${{ secrets.ALIYUN_USERNAME }}
         password: ${{ secrets.PASSWORD }}
         image_version: ${{ matrix.DOCKER_TAG }}
-        docker_file: '${{ github.event.inputs.project }}/Dockerfile'
+        docker_file: '.'
         
       
     - name: 删除旧的GitHub-workflow
