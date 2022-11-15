@@ -73,11 +73,10 @@ jobs:
       id: buildAndPushImage
       uses: risfeng/docker-image-build-push-action@v1.0
       with:
-        context: .
-        docker_file: 'satrorn/clash/Dockerfile'
+        docker_file: '.'
         registry_url: 'registry.cn-shenzhen.aliyuncs.com'
-        namespaces: '${{ secrets.DOCKERHUB_USERNAME }}'
-        repository_name: '${{ github.event.inputs.project }}'
+        namespaces: 'satrorn'
+        repository_name: 'clash'
         user_name: ${{ secrets.ALIYUN_USERNAME }}
         password: ${{ secrets.PASSWORD }}
         image_version: ${{ matrix.DOCKER_TAG }}
