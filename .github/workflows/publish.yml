@@ -73,14 +73,14 @@ jobs:
       id: buildAndPushImage
       uses: risfeng/docker-image-build-push-action@v1.0
       with:
+        context: ${{ github.event.inputs.project }}
+        docker_file: '.'
         registry_url: 'registry.cn-shenzhen.aliyuncs.com'
         namespaces: '${{ secrets.DOCKERHUB_USERNAME }}'
         repository_name: '${{ github.event.inputs.project }}'
         user_name: ${{ secrets.ALIYUN_USERNAME }}
         password: ${{ secrets.PASSWORD }}
         image_version: ${{ matrix.DOCKER_TAG }}
-        docker_file: '.'
-        
       
     - name: 删除旧的GitHub-workflow
       uses: Mattraks/delete-workflow-runs@main
