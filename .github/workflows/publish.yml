@@ -1,10 +1,3 @@
-#=================================================
-# https://github.com/danxiaonuo/subweb-docker
-# Lisence: MIT
-# Author: danxiaonuo
-# Blog: https://www.danxiaonuo.com
-#=================================================
-
 name: 自动编译[CLASH]镜像
 
 # 设置触发条件
