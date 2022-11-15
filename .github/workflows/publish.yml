@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - 'Dockerfile'
+      - '.github/workflows/publish.yml'
   # 手动触发工作流
   workflow_dispatch:
     inputs:

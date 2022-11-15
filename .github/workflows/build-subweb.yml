@@ -26,10 +26,10 @@ on:
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
   push:
-    branches: [ master ]
-#    paths:
-#      - 'Dockerfile'
-#      - '.github/workflows/build-release.yml'
+#    branches: [ master ]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/build-subweb.yml'
 
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
