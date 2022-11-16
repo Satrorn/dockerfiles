@@ -40,8 +40,8 @@ on:
     - cron: '0 16 * * *'
 
 # 点击star时开始任务
-#  watch:
-#    types: started
+ watch:
+    types: started
 
  # 任务集
 jobs:
