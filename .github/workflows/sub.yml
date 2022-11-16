@@ -1,7 +1,9 @@
 # 利用GitHub Action自动构建多框架的docker镜像
 # 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
 # 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
-name: 自动编译[sub]
+
+name: 自动编译[SUB]
+
 # 设置触发条件
 on:
 # 手动触发工作流
@@ -38,8 +40,8 @@ on:
     - cron: '0 16 * * *'
 
 # 点击star时开始任务
- watch:
-    types: started
+#  watch:
+#    types: started
 
  # 任务集
 jobs:
