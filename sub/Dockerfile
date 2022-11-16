@@ -1,4 +1,4 @@
-FROM node:danxiaonuo/subweb:latest
+FROM danxiaonuo/subweb:latest
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 RUN yarn install
