@@ -2,7 +2,7 @@
 # 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
 # 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
 
-name: 自动编译[订阅前端-TEST]
+name: 自动编译[订阅]
 
 # 设置触发条件
 on:
