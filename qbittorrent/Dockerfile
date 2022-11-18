@@ -3,7 +3,7 @@
 # python3 /data/qb_dispatch/qb_dispatch.py -f "$2" -c "$3" -n "$4"
 
 # 指定构建的基础镜像
-FROM node:nevinee/qbittorrent:latest
+FROM nevinee/qbittorrent:latest
 
 # ***** 安装依赖 *****
 RUN set -eux \
