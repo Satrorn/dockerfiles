@@ -6,18 +6,22 @@
 FROM nevinee/qbittorrent:latest
 
 # ***** 安装依赖 *****
-RUN set -eux \
-    && git clone --progress https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
-
 RUN apk add --no-cache \
        py3-pip \
        py3-tinydb
 
-# 拷贝配置文件	
-COPY conf/config.ini /data/qb_dispatch/config.ini
-COPY conf/diy.sh /data/diy/diy.sh
-COPY conf/ui /data/ui
+# 安装转换源码
+WORKDIR /data
 
+RUN git clone https://github.com/spartazhc/qb_dispatch.git /qb_dispatch
+
+# 拷贝配置文件	
+COPY conf/config.ini /qb_dispatch/config.ini
+COPY conf/diy.sh /diy/diy.sh
+COPY conf/ui /ui
+
+
+# 安装***
 WORKDIR /data/qb_dispatch
 
 RUN python3 -m pip install -r requirement.txt
