@@ -11,8 +11,6 @@ RUN apk add --no-cache \
        py3-tinydb
 
 # 安装转换源码
-WORKDIR /data
-
 RUN git clone --progress https://github.com/spartazhc/qb_dispatch.git data/qb_dispatch
 
 # 拷贝配置文件	
@@ -21,10 +19,7 @@ COPY conf/diy.sh data/diy/diy.sh
 ADD conf/ui data/ui
 
 
-# 安装***
-WORKDIR /data/qb_dispatch
-
-RUN python3 -m pip install -r requirement.txt
+RUN data/qb_dispatch python3 -m pip install -r requirement.txt
 
 EXPOSE 9092
 CMD ["nginx","-g",""daemon off;]
