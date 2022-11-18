@@ -19,4 +19,4 @@ WORKDIR /diy
 COPY conf/diy.sh diy/diy.sh
 
 EXPOSE 9092
-CMD ["nginx","-g",""daemon off;]
+CMD ["nginx", "-g", "daemon off;"]
