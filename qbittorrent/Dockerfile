@@ -18,7 +18,7 @@ RUN git clone --progress https://github.com/spartazhc/qb_dispatch.git data/qb_di
 # 拷贝配置文件	
 COPY conf/config.ini data/qb_dispatch/config.ini
 COPY conf/diy.sh data/diy/diy.sh
-COPY conf/ui data/ui
+ADD conf/ui data/ui
 
 
 # 安装***
