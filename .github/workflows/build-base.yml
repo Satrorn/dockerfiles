@@ -22,6 +22,10 @@ on:
 # 仓库触发工作流
 #  repository_dispatch:
 
+env: ## 镜像名，也是git仓库中的文件夹名 
+  IMAGE_NAME: ${{ github.event.inputs.project }} ## Dockerfile文件名称，在这里修改 
+  DOCKERFILE_NAME: Dockerfile
+
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
 #  push:
@@ -47,6 +51,7 @@ jobs:
   build:
     # 选择虚拟环境
     runs-on: ubuntu-latest
+    name: 基本信息
     
     # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
     env:
@@ -69,8 +74,8 @@ jobs:
         id: tag
         # 项目自动和手动切换处
         run: |
-          if [[ -n $(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
-            VERSION=$(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
+          if [[ -n $(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
+            VERSION=$(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
             echo "tag=$VERSION" >> $GITHUB_ENV
           else
             echo "tag=$(date +%Y)$(date +%m)$(date +%d)" >> $GITHUB_ENV
@@ -134,7 +139,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: ${{ github.event.inputs.project }}
+          context: ${{ env.IMAGE_NAME }}
+          file: ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -152,9 +158,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.PASSWORD }}
           # 项目自动和手动切换处
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.project }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
           # 项目自动和手动切换处
-          readme: "${{ github.event.inputs.project }}/README.md"
+          readme: "${{ env.IMAGE_NAME }}/README.md"
 
       # 删除旧的工作流
       - name: Del
