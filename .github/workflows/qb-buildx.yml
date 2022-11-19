@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： ★[qbittorrent]☆
+name: 构建镜像： [qbittorrent]
 
 # 设置触发条件
 on:
