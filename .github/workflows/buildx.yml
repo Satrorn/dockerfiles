@@ -3,18 +3,16 @@ name: 构建镜像： ★★★★☆
 
 # 设置触发条件
 on:
-# 手动触发工作流
+# 手动填写项目参数（仅填写一次）
   workflow_dispatch:
     inputs:
       project:
         description: 'project'
         required: true
-      # 定时请填写default参数
         default: ''
       tag:
         description: 'tag'
         required: true
-      # 定时请填写default参数
         default: 'latest'
       ali:
         description: 'ali'
