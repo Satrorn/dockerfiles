@@ -3,7 +3,7 @@ name: 构建镜像： [订阅前端]
 
 # 设置触发条件
 on:
-#  workflow_dispatch:
+  workflow_dispatch:
 #    inputs:
 #      project:
 #        description: 'project'
