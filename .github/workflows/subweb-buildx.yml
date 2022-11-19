@@ -33,8 +33,8 @@ env: ## 镜像名，也是git仓库中的文件夹名
   push:
     branches: [ master ]
     paths:
-      - 'subweb/Dockerfile'
-      - '.github/workflows/subweb-buildx.yml'
+      - Dockerfile
+      - .github/workflows/subweb-buildx.yml
 
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
