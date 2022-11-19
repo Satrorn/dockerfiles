@@ -66,7 +66,6 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 # 工作目录
 WORKDIR /app
-COPY package.json ./
 RUN yarn install
 
 # ##############################################################################
@@ -76,7 +75,6 @@ RUN yarn install
 ##########################################
 FROM dependencies AS build
 WORKDIR /app
-COPY . /app
 RUN yarn build
 
 
@@ -91,10 +89,10 @@ RUN yarn build
 FROM danxiaonuo/nginx:latest
 
 # 工作目录
-
+WORKDIR /www
 
 # 拷贝资源文件
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /www
 COPY conf/sub-web/vhost/default.conf /data/nginx/conf/vhost/default.conf
 
 # 容器信号处理
