@@ -1,1 +1,0 @@
-python3 /data/qb_dispatch/qb_dispatch.py -f "$2" -c "$3" -n "$4"
