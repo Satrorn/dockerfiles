@@ -67,9 +67,8 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 # 工作目录
 WORKDIR /app
 
-RUN set -eux \
-    && cp conf/sub-web/package.json /app/package.json \
-    && yarn install
+COPY sub-web/package.json ./
+RUN yarn install
 
 # ##############################################################################
     
@@ -78,9 +77,10 @@ RUN set -eux \
 ##########################################
 FROM dependencies AS build
 WORKDIR /app
-RUN set -eux \
-    && cp -rf sub-web/. /app \
-    && yarn build
+
+COPY sub-web/. /app
+RUN yarn build
+
 
 # ##############################################################################
 
