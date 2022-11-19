@@ -4,8 +4,9 @@
       <el-col>
         <el-card>
           <div slot="header">
-            Subscription Converter
+            订阅转换
             <svg-icon icon-class="github" style="margin-left: 20px" @click="goToProject" />
+            <svg-icon icon-class="telegram" style="margin-left: 20px" @click="gotoTgChannel" />
 
             <div style="display: inline-block; position:absolute; right: 20px">{{ backendVersion }}</div>
           </div>
@@ -24,23 +25,13 @@
                   @blur="saveSubUrl"
                 />
               </el-form-item>
-              <el-form-item label="客户端:">
+              <el-form-item label="生成类型:">
                 <el-select v-model="form.clientType" style="width: 100%">
                   <el-option v-for="(v, k) in options.clientTypes" :key="k" :label="k" :value="v"></el-option>
                 </el-select>
               </el-form-item>
 
-              <div v-if="advanced === '2'">
-                <el-form-item label="后端地址:">
-                  <el-autocomplete
-                    style="width: 100%"
-                    v-model="form.customBackend"
-                    :fetch-suggestions="backendSearch"
-                    placeholder="动动小手，（建议）自行搭建后端服务。例：http://127.0.0.1:25500/sub?"
-                  >
-                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
-                  </el-autocomplete>
-                </el-form-item>
+
                 <el-form-item label="远程配置:">
                   <el-select
                     v-model="form.remoteConfig"
@@ -61,16 +52,34 @@
                         :value="item.value"
                       ></el-option>
                     </el-option-group>
-                    <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">配置示例</el-button>
-                  </el-select>
-                </el-form-item>
-                <el-form-item label="Include:">
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="后端地址:">
+
+              <el-select
+                  v-model="form.customBackend"
+                  allow-create
+                  filterable
+                  placeholder="请选择"
+                  style="width: 100%"
+                >
+                  <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
+
+                </el-select>
+
+              </el-form-item>
+
+              <div v-if="advanced === '2'">
+
+
+                <el-form-item label="包含节点:">
                   <el-input v-model="form.includeRemarks" placeholder="节点名包含的关键字，支持正则" />
                 </el-form-item>
-                <el-form-item label="Exclude:">
+                <el-form-item label="排除节点:">
                   <el-input v-model="form.excludeRemarks" placeholder="节点名不包含的关键字，支持正则" />
                 </el-form-item>
-                <el-form-item label="FileName:">
+                <el-form-item label="输出文件名:">
                   <el-input v-model="form.filename" placeholder="返回的订阅文件名" />
                 </el-form-item>
                 <el-form-item label-width="0px">
@@ -79,37 +88,25 @@
                       <el-checkbox v-model="form.nodeList" label="输出为 Node List" border></el-checkbox>
                     </el-col>
                     <el-popover placement="bottom" v-model="form.extraset">
-                      <el-row>
-                        <el-checkbox v-model="form.emoji" label="Emoji"></el-checkbox>
+                      <el-row :gutter="10">
+                        <el-col :span="12"><el-checkbox v-model="form.emoji" label="Emoji"></el-checkbox></el-col>
+                        <el-col :span="12"><el-checkbox v-model="form.new_name" label="Clash新字段名"></el-checkbox></el-col>                        
                       </el-row>
+                      <el-row :gutter="10">
+                        <el-col :span="12"><el-checkbox v-model="form.udp" @change="needUdp = true" label="启用 UDP"></el-checkbox></el-col>
+                        <el-col :span="12"><el-checkbox v-model="form.tfo" label="启用 TFO"></el-checkbox></el-col>                        
                       <el-row>
-                        <el-checkbox v-model="form.new_name" label="Clash New Field"></el-checkbox>
+                        <el-checkbox v-model="form.scv" label="跳过证书验证"></el-checkbox>
                       </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.udp" @change="needUdp = true" label="启用 UDP"></el-checkbox>
+                      <el-row :gutter="10">
+                        <el-col :span="12"><el-checkbox v-model="form.appendType" label="插入节点类型"></el-checkbox></el-col>
+                        <el-col :span="12"><el-checkbox v-model="form.sort" label="排序节点"></el-checkbox></el-col>                        
                       </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.appendType" label="节点类型"></el-checkbox>
-                      </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.sort" label="排序节点"></el-checkbox>
-                      </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.fdn" label="过滤非法节点"></el-checkbox>
+                      <el-row :gutter="10">
+                        <el-col :span="12"><el-checkbox v-model="form.fdn" label="过滤不支持节点"></el-checkbox></el-col>
+                        <el-col :span="12"><el-checkbox v-model="form.expand" label="展开规则全文"></el-checkbox></el-col>                        
                       </el-row>
                       <el-button slot="reference">更多选项</el-button>
-                    </el-popover>
-                    <el-popover placement="bottom" style="margin-left: 10px">
-                      <el-row>
-                        <el-checkbox v-model="form.tpl.surge.doh" label="Surge.DoH"></el-checkbox>
-                      </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.tpl.clash.doh" label="Clash.DoH"></el-checkbox>
-                      </el-row>
-                      <el-row>
-                        <el-checkbox v-model="form.insert" label="网易云"></el-checkbox>
-                      </el-row>
-                      <el-button slot="reference">定制功能</el-button>
                     </el-popover>
                   </el-row>
                 </el-form-item>
@@ -203,7 +200,7 @@
             v-model="uploadConfig"
             type="textarea"
             :autosize="{ minRows: 15, maxRows: 15}"
-            maxlength="5000"
+            maxlength="10000"
             show-word-limit
           ></el-input>
         </el-form-item>
@@ -231,9 +228,9 @@ const tgBotLink = process.env.VUE_APP_BOT_LINK
 
 export default {
   data() {
-    return {
-      backendVersion: "",
-      advanced: "2",
+    var data = {
+      backendVersion: '',
+      advanced: "1",
 
       // 是否为 PC 端
       isPC: true,
@@ -244,216 +241,70 @@ export default {
           Surge3: "surge&ver=3",
           Surge4: "surge&ver=4",
           Quantumult: "quan",
-          QuantumultX: "quanx",
-          Surfboard: "surfboard",
+          "Quantumult X": "quanx",
           Loon: "loon",
-          SSAndroid: "sssub",
+          Mellow: "mellow",
+          Surfboard: "surfboard",
+          "Shadowsocks(SIP002)": "ss",
+          "Shadowsocks Android(SIP008)": "sssub",
+          ShadowsocksR: "ssr",
+          ShadowsocksD: "ssd",          
           V2Ray: "v2ray",
-          ss: "ss",
-          ssr: "ssr",
-          ssd: "ssd",
-          ClashR: "clashr",
-          Surge2: "surge&ver=2",
+          Trojan: "trojan",
+          "混合订阅（mixed）": "mixed",
+          "自动判断客户端": "auto",
         },
-        backendOptions: [{ value: "https://subapi.xiaonuo.live/sub?" }],
+        customBackend: {
+          "本地转换1": "http://192.168.2.31:25500/sub?", 
+          "本地轉換2": "http://192.168.2.37:25500/sub?",
+          "域名つ站": "https://api.loii.ml/sub?",
+          "肥羊增强": "https://api.v1.mk/sub?",
+          "肥羊备用": "https://sub.d1.mk/sub?",
+          "つつ多地": "https://api.tsutsu.one/sub?",
+          "品云提供": "https://v.id9.cc/sub?",
+          "nameless13": "https://www.nameless13.com/sub?",
+          "subconverter": "https://sub.xeton.dev/sub?",
+          "lhie1": "https://api.dler.io/sub?",
+          "heroku": "https://api.asnil.ml/sub?",          
+          "render": "https://api.asnil.tk/sub?",
+        },
+        backendOptions: [
+          {value: "http://192.168.2.31:25500/sub?" },
+          {value: "http://192.168.2.37:25500/sub?"},   
+          {value: "https://api.loii.ml/sub?"},
+          {value: "https://api.v1.mk/sub?"},
+          {value: "https://sub.d1.mk/sub?"},
+          {value: "https://api.tsutsu.one/sub?"},
+          {value: "https://v.id9.cc/sub?"},
+          {value: "https://www.nameless13.com/sub?"},
+          {value: "https://sub.xeton.dev/sub?"},
+          {value: "https://api.dler.io/sub?"},
+          {value: "https://api.asnil.ml/sub?"},          
+          {value: "https://api.asnil.tk/sub?"},  
+        ],
         remoteConfig: [
-          {
-            label: "xiaonuo",
+        {
+            label: "规则版本",
             options: [
               {
-                label: "xiaonuo_Full 小喏分组版",
+                label: "自用版",
                 value:
-                  "https://cdn.danxiaonuo.me/clash/config/xiaonuo_Full.ini"
+                  "config/Part.ini"
               },
               {
-                label: "xiaonuo_Full_nostate 小喏无分组版",
+                label: "精简版",
                 value:
-                  "https://cdn.danxiaonuo.me/clash/config/xiaonuo_Full_nostate.ini"
-              }
-            ]
-          },
-          {
-            label: "ACL4SSR",
-            options: [
+                  "config/Mini.ini"
+              },
               {
-                label: "ACL4SSR_Online 默认版 分组比较全 (与Github同步)",
+                label: "完整版",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
+                  "config/Full.ini"
               },
               {
-                label: "ACL4SSR_Online_AdblockPlus 更多去广告 (与Github同步)",
+                label: "在线版",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_AdblockPlus.ini"
-              },
-              {
-                label: "ACL4SSR_Online_NoAuto 无自动测速 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Online_NoReject 无广告拦截规则 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_NoReject.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini 精简版 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_AdblockPlus.ini 精简版 更多去广告 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_AdblockPlus.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_NoAuto.ini 精简版 不带自动测速 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_Fallback.ini 精简版 带故障转移 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_Fallback.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_MultiMode.ini 精简版 自动测速、故障转移、负载均衡 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_MultiMode.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full 全分组 重度用户使用 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_NoAuto.ini 全分组 无自动测速 重度用户使用 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_AdblockPlus 全分组 重度用户使用 更多去广告 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_Netflix 全分组 重度用户使用 奈飞全量 (与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_Netflix.ini"
-              },
-              {
-                label: "ACL4SSR 本地 默认版 分组比较全",
-                value: "config/ACL4SSR.ini"
-              },
-              {
-                label: "ACL4SSR_Mini 本地 精简版",
-                value: "config/ACL4SSR_Mini.ini"
-              },
-              {
-                label: "ACL4SSR_Mini_NoAuto.ini 本地 精简版+无自动测速",
-                value: "config/ACL4SSR_Mini_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Mini_Fallback.ini 本地 精简版+fallback",
-                value: "config/ACL4SSR_Mini_Fallback.ini"
-              },
-              {
-                label: "ACL4SSR_BackCN 本地 回国",
-                value: "config/ACL4SSR_BackCN.ini"
-              },
-              {
-                label: "ACL4SSR_NoApple 本地 无苹果分流",
-                value: "config/ACL4SSR_NoApple.ini"
-              },
-              {
-                label: "ACL4SSR_NoAuto 本地 无自动测速 ",
-                value: "config/ACL4SSR_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_NoAuto_NoApple 本地 无自动测速&无苹果分流",
-                value: "config/ACL4SSR_NoAuto_NoApple.ini"
-              },
-              {
-                label: "ACL4SSR_NoMicrosoft 本地 无微软分流",
-                value: "config/ACL4SSR_NoMicrosoft.ini"
-              },
-              {
-                label: "ACL4SSR_WithGFW 本地 GFW列表",
-                value: "config/ACL4SSR_WithGFW.ini"
-              }
-            ]
-          },
-          {
-            label: "universal",
-            options: [
-              {
-                label: "No-Urltest",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/no-urltest.ini"
-              },
-              {
-                label: "Urltest",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/urltest.ini"
-              }
-            ]
-          },
-          {
-            label: "customized",
-            options: [
-              {
-                label: "Maying",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/maying.ini"
-              },
-              {
-                label: "Ytoo",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ytoo.ini"
-              },
-              {
-                label: "FlowerCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/flowercloud.ini"
-              },
-              {
-                label: "NyanCAT",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/nyancat.ini"
-              },
-              {
-                label: "Nexitally",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/nexitally.ini"
-              },
-              {
-                label: "SoCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/socloud.ini"
-              },
-              {
-                label: "ARK",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ark.ini"
-              },
-              {
-                label: "ssrCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ssrcloud.ini"
-              }
-            ]
-          },
-          {
-            label: "Special",
-            options: [
-              {
-                label: "NeteaseUnblock(仅规则，No-Urltest)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/netease.ini"
-              },
-              {
-                label: "Basic(仅GEOIP CN + Final)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/basic.ini"
+                  "https://loip.ml/link/conf/PartMini.ini"
               }
             ]
           }
@@ -474,25 +325,17 @@ export default {
         udp: false,
         tfo: false,
         scv: false,
+        expand: true, // 是否将规则全文写进配置文件
         fdn: false,
         appendType: false,
         insert: false, // 是否插入默认订阅的节点，对应配置项 insert_url
         new_name: true, // 是否使用 Clash 新字段
-
-        // tpl 定制功能
-        tpl: {
-          surge: {
-            doh: false // dns 查询是否使用 DoH
-          },
-          clash: {
-            doh: false
-          }
-        }
       },
 
       loading: false,
       customSubUrl: "",
       curtomShortSubUrl: "",
+
       dialogUploadConfigVisible: false,
       uploadConfig: "",
       uploadPassword: "",
@@ -501,10 +344,34 @@ export default {
 
       needUdp: false, // 是否需要添加 udp 参数
     };
+
+    // window.console.log(data.options.remoteConfig);
+    // window.console.log(data.options.customBackend);
+    let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
+    if (phoneUserAgent) {
+      let acl4ssrConfig = data.options.remoteConfig[1].options;
+      for (let i = 0; i < acl4ssrConfig.length; i++) {
+        if (acl4ssrConfig[i].label.length > 10) {
+          acl4ssrConfig[i].label = acl4ssrConfig[i].label.replace(/\s.*/, "");
+        }
+      }
+      var serverList = {};
+      let serverKeys = Object.keys(data.options.customBackend);
+      for (let i = 0; i < serverKeys.length; i++) {
+        let key = serverKeys[i].replace(/\(.*/, "");
+        serverList[key] = data.options.customBackend[serverKeys[i]];
+      }
+      data.options.customBackend = serverList;
+    }
+    return data;
   },
   created() {
-    document.title = "Subscription Converter";
-    this.isPC = this.$getOS().isPc;
+    // document.title = "Subscription Converter";
+    document.title = "在线订阅转换";
+     this.isPC = this.$getOS().isPc;
 
     // 获取 url cache
     if (process.env.VUE_APP_USE_STORAGE === 'true') {
@@ -513,7 +380,8 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.notify();
+    this.form.customBackend = defaultBackend;
+    this.form.remoteConfig = "config/Part.ini";
     this.getBackendVersion();
   },
   methods: {
@@ -522,6 +390,9 @@ export default {
     },
     goToProject() {
       window.open(project);
+    },
+	gotoTgChannel() {
+      window.open(tgBotLink);
     },
     gotoGayhub() {
       window.open(gayhubRelease);
@@ -559,14 +430,31 @@ export default {
         this.$message.error("订阅链接与客户端为必填项");
         return false;
       }
-
+      // 远程接口
       let backend =
         this.form.customBackend === ""
           ? defaultBackend
           : this.form.customBackend;
 
+      // 远程配置
+      let config = this.form.remoteConfig === "" ? "" : this.form.remoteConfig;
+
       let sourceSub = this.form.sourceSubUrl;
       sourceSub = sourceSub.replace(/(\n|\r|\n\r)/g, "|");
+
+      // 薯条屏蔽
+      if (sourceSub.indexOf("losadhwse") !== -1 && (backend.indexOf("py6.pw") !== -1 || backend.indexOf("subconverter-web.now.sh") !== -1 || backend.indexOf("subconverter.herokuapp.com") !== -1 || backend.indexOf("api.wcc.best") !== -1)) {
+        this.$alert('此机场订阅已将该后端屏蔽，请自建后端转换。', '转换错误提示', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$message({
+              type: 'error',
+              message: `action: ${ action }`
+            });
+          }
+        });
+        return false;
+      }
 
       this.customSubUrl =
         backend +
@@ -577,11 +465,11 @@ export default {
         "&insert=" +
         this.form.insert;
 
+      if (config !== "") {
+        this.customSubUrl += "&config=" + encodeURIComponent(config);
+      }
+
       if (this.advanced === "2") {
-        if (this.form.remoteConfig !== "") {
-          this.customSubUrl +=
-            "&config=" + encodeURIComponent(this.form.remoteConfig);
-        }
         if (this.form.excludeRemarks !== "") {
           this.customSubUrl +=
             "&exclude=" + encodeURIComponent(this.form.excludeRemarks);
@@ -611,21 +499,15 @@ export default {
           "&fdn=" +
           this.form.fdn.toString() +
           "&sort=" +
-          this.form.sort.toString();
+          this.form.sort.toString() +
+          "&expand=" +
+          this.form.expand.toString();
 
         if (this.needUdp) {
           this.customSubUrl += "&udp=" + this.form.udp.toString()
         }
 
-        if (this.form.tpl.surge.doh === true) {
-          this.customSubUrl += "&surge.doh=true";
-        }
-
         if (this.form.clientType === "clash") {
-          if (this.form.tpl.clash.doh === true) {
-            this.customSubUrl += "&clash.doh=true";
-          }
-
           this.customSubUrl += "&new_name=" + this.form.new_name.toString();
         }
       }
@@ -666,19 +548,6 @@ export default {
           this.loading = false;
         });
     },
-    notify() {
-      const h = this.$createElement;
-
-      this.$notify({
-        title: "隐私提示",
-        type: "warning",
-        message: h(
-          "i",
-          { style: "color: teal" },
-          "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
-        )
-      });
-    },
     confirmUploadConfig() {
       if (this.uploadConfig === "") {
         this.$message.warning("远程配置不能为空");
@@ -698,18 +567,18 @@ export default {
           }
         })
         .then(res => {
-          if (res.data.Code === 1 && res.data.url !== "") {
+          if (res.data.code === 0 && res.data.data.url !== "") {
             this.$message.success(
               "远程配置上传成功，配置链接已复制到剪贴板，有效期三个月望知悉"
             );
 
             // 自动填充至『表单-远程配置』
-            this.form.remoteConfig = res.data.Url;
+            this.form.remoteConfig = res.data.data.url;
             this.$copyText(this.form.remoteConfig);
 
             this.dialogUploadConfigVisible = false;
           } else {
-            this.$message.error("远程配置上传失败：" + res.data.Message);
+            this.$message.error("远程配置上传失败: " + res.data.msg);
           }
         })
         .catch(() => {
