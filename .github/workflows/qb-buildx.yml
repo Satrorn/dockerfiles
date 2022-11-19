@@ -3,7 +3,7 @@ name: 构建镜像： ★[qbittorrent]☆
 
 # 设置触发条件
 on:
-  workflow_dispatch:
+#  workflow_dispatch:
 #    inputs:
 #      project:
 #        description: 'project'
@@ -34,8 +34,7 @@ env: ## 镜像名，也是git仓库中的文件夹名
 #    branches: [ master ]
     paths:
       - 'Dockerfile'
-      - '.github/workflows/qbittorrent-buildx.yml'
-
+      - '.github/workflows/qb-buildx.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
