@@ -1,6 +1,4 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-# 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
-# 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
 name: 构建镜像： ★★★★☆
 
 # 设置触发条件
@@ -12,7 +10,7 @@ on:
         description: 'project'
         required: true
       # 定时请填写default参数
-        default: ''
+        default: 'subweb-docker'
       tag:
         description: 'tag'
         required: true
