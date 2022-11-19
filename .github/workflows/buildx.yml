@@ -3,13 +3,12 @@ name: 构建镜像： ★★★★☆
 
 # 设置触发条件
 on:
-# 手动填写项目参数（仅填写一次）
   workflow_dispatch:
     inputs:
       project:
         description: 'project'
         required: true
-        default: ''
+        default: ''  # 手动填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
       tag:
         description: 'tag'
         required: true
