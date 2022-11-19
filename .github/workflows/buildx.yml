@@ -1,7 +1,7 @@
 # 利用GitHub Action自动构建多框架的docker镜像
 # 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
 # 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
-name: 手动编译镜像
+name: 构建镜像： ★★★★☆
 
 # 设置触发条件
 on:
@@ -21,6 +21,11 @@ on:
 
 # 仓库触发工作流
 #  repository_dispatch:
+
+env: ## 镜像名，也是git仓库中的文件夹名 
+  IMAGE_NAME: ${{ github.event.inputs.project }} ## Dockerfile文件名称，在这里修改 
+  DOCKERFILE_NAME: Dockerfile
+  TAGS: latest
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
@@ -47,30 +52,22 @@ jobs:
   build:
     # 选择虚拟环境
     runs-on: ubuntu-latest
-    
-    # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
-    env:
-      PROJECT: clash
-      TAGS: latest
-  
-    # 运行步骤
+    name: 基本信息
     steps:
       # 检出master分支
-      - name: 出各个模块代码
+      - name: 模块代码
         uses: actions/checkout@v3
-
-      - name: 安装 QEMU
+      - name: 安装模拟代码
         uses: docker/setup-qemu-action@v2
-
-      - name: 安装 docker buildx
+      - name: 安装构建多架构代码
         uses: docker/setup-buildx-action@v2
 
       - name: 获取日期
         id: tag
         # 项目自动和手动切换处
         run: |
-          if [[ -n $(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
-            VERSION=$(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
+          if [[ -n $(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
+            VERSION=$(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
             echo "tag=$VERSION" >> $GITHUB_ENV
           else
             echo "tag=$(date +%Y)$(date +%m)$(date +%d)" >> $GITHUB_ENV
@@ -118,14 +115,14 @@ jobs:
           echo "auto_update_ali=${AUTO_UPDATE_ALI}" >> $GITHUB_OUTPUT
           
       # 登录到DOCKERHUB
-      - name: 登陆DOCKERHUB
+      - name: 登陆镜像站
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.PASSWORD }}
 
       # 登录到阿里镜像仓库
-      - name: 登陆ALIYUN
+      - name: 登陆阿里云
         run: |
           docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.PASSWORD }} registry.cn-shenzhen.aliyuncs.com
 
@@ -134,7 +131,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: ${{ github.event.inputs.project }}
+          context: ${{ env.IMAGE_NAME }}
+          file: ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -146,18 +144,18 @@ jobs:
             ${{ steps.prepare.outputs.auto_update_ali }}
             
       # 同步简介
-      - name: README.md
+      - name: 信息更新
         uses: ms-jpq/sync-dockerhub-readme@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.PASSWORD }}
           # 项目自动和手动切换处
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.project }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
           # 项目自动和手动切换处
-          readme: "${{ github.event.inputs.project }}/README.md"
+          readme: "${{ env.IMAGE_NAME }}/README.md"
 
       # 删除旧的工作流
-      - name: Del
+      - name: 删除
         uses: Mattraks/delete-workflow-runs@main
         with:
           repository: ${{ github.repository }}

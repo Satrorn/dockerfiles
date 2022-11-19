@@ -1,26 +1,28 @@
 # 利用GitHub Action自动构建多框架的docker镜像
 # 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
 # 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
-name: 手动编译镜像
+name: 构建镜像：ACB
 
 # 设置触发条件
 on:
 # 手动触发工作流
   workflow_dispatch:
     inputs:
-      project:
-        description: 'project'
-        required: true
-      # 定时请填写default参数
+      version:
+        description: '要构建的版本，可以为beta/rc版，如不输入则默认去检测最新的正式版'
+        required: false
         default: ''
-      tag:
-        description: 'tag'
-        required: true
-      # 定时请填写default参数
-        default: 'latest'
+  repository_dispatch: # (必需设置.镜像名)
+    types: qbittorrent 
 
-# 仓库触发工作流
-#  repository_dispatch:
+env:
+  ## 镜像名，也是git仓库中的文件夹名(必需设置.镜像名)
+  IMAGE_NAME: qbittorrent
+  ## Dockerfile文件名称，在这里修改
+  DOCKERFILE_NAME: Dockerfile
+  DOCKERFILE_NAME2: Dockerfile.iyuu
+  DOCKERFILE_NAME3: Dockerfile.edge
+  TAGS: latest
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
@@ -47,12 +49,7 @@ jobs:
   build:
     # 选择虚拟环境
     runs-on: ubuntu-latest
-    
-    # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
-    env:
-      PROJECT: clash
-      TAGS: latest
-  
+    name: 并行构建  
     # 运行步骤
     steps:
       # 检出master分支
@@ -134,7 +131,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           # 项目自动和手动切换处
-          context: ${{ github.event.inputs.project }}
+          context: ${{ env.IMAGE_NAME }}
+          file: ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
