@@ -60,7 +60,7 @@ jobs:
             VERSION=$(cat ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }} | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
             echo "tag=$VERSION" >> $GITHUB_ENV
           else
-            echo "tag=$(date +%Y)$(date +%m)$(date +%d)" >> $GITHUB_ENV
+            echo "tag=$(date +%Y)$(date +%m)$(date +%d" >> $GITHUB_ENV
           fi
 
       - name: 版本分类
@@ -77,6 +77,8 @@ jobs:
         # AUTO_UPDATE_ALI ：
         # 项目自动和手动切换处
         run: |
+          ALI_ADD=registry.cn-shenzhen.aliyuncs.com
+        
           DOCKERHUB_VERSION=${{ env.TAGS }}
           TIME_VERSION=${{ env.tag }}
 
