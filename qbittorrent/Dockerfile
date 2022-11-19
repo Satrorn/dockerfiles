@@ -4,7 +4,7 @@ LABEL maintainer="satrorn <satrorn@gmail.com>"
 RUN apk add --update git
 RUN apk add --update py3-pip
 RUN apk add --update py3-tinydb
-RUN git clone https://github.com/devome/dockerfiles/tree/master/qbittorrent /app
+#RUN git clone https://github.com/devome/dockerfiles/tree/master/qbittorrent /app
 RUN git clone https://github.com/spartazhc/qb_dispatch /app
 COPY conf/diy.sh diy/diy.sh
 
