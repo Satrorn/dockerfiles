@@ -95,6 +95,10 @@ FROM danxiaonuo/nginx:latest
 # 工作目录
 WORKDIR /www
 
+# 拷贝资源文件
+COPY --from=build /app/dist /www
+COPY conf/sub-web/vhost/default.conf /data/nginx/conf/vhost/default.conf
+
 # 容器信号处理
 STOPSIGNAL SIGQUIT
 
