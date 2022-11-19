@@ -16,4 +16,4 @@ COPY --from=build /app/dist /usr/share/nginx/html
 COPY . /app
 
 EXPOSE 80
-CMD [ "sh", "-c", "/app/start.sh" ]
+CMD [ "nginx", "-g", "daemon off;" ]
