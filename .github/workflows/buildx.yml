@@ -24,7 +24,7 @@ env: ## 镜像名，也是git仓库中的文件夹名
   IMAGE_NAME: ${{ github.event.inputs.project }}
      ## Dockerfile文件名称，在这里修改 
   DOCKERFILE_NAME: Dockerfile
-  TAGS: latest
+  TAGS: ${{ github.event.inputs.tag }}
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
@@ -86,10 +86,10 @@ jobs:
         # AUTO_UPDATE_ALI ：
         # 项目自动和手动切换处
         run: |
-          IMAGE_NAME=${{ github.event.inputs.project }}
+          IMAGE_NAME=${{ env.IMAGE_NAME }}
           ALI_ADD=registry.cn-shenzhen.aliyuncs.com
           
-          DOCKERHUB_VERSION=${{ github.event.inputs.tag }}
+          DOCKERHUB_VERSION=${{ env.TAGS }}
           TIME_VERSION=${{ env.tag }}
 
           TAG_VERSION="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
