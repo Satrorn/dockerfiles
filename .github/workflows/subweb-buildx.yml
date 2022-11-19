@@ -26,8 +26,8 @@ env: ## 镜像名，也是git仓库中的文件夹名
   ALI_ADD: ${{ github.event.inputs.ali }}
 
 # 仓库触发工作流
-#  repository_dispatch:
-#    types: ${{ env.IMAGE_NAME }}
+  repository_dispatch:
+    types: ${{ env.IMAGE_NAME }}
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
   push:
