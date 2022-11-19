@@ -6,7 +6,7 @@ RUN apk update && \
     apk add --update py3-pip && \
     apk add --update py3-tinydb
 
-#RUN git clone https://github.com/devome/dockerfiles/qbittorrent /app
+RUN git clone https://github.com/devome/dockerfiles/qbittorrent /app
 RUN git clone https://github.com/spartazhc/qb_dispatch /app
 COPY conf/diy.sh diy/diy.sh
 
