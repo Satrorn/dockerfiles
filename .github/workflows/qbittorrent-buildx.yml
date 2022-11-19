@@ -17,6 +17,8 @@ on:
         description: 'ali'
         required: true
         default: 'registry.cn-shenzhen.aliyuncs.com'
+  repository_dispatch:
+    types: qbittorrent
 
 env: ## 镜像名，也是git仓库中的文件夹名 
   IMAGE_NAME: ${{ github.event.inputs.project }}
@@ -25,9 +27,6 @@ env: ## 镜像名，也是git仓库中的文件夹名
   TAGS: ${{ github.event.inputs.tag }}
   ALI_ADD: ${{ github.event.inputs.ali }}
 
-# 仓库触发工作流
-#  repository_dispatch:
-#    types: qbittorrent
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
   push:
