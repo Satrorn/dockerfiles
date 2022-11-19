@@ -13,7 +13,6 @@ env:
   IMAGE_NAME: qbittorrent
   ## Dockerfile文件名称，在这里修改
   DOCKERFILE_NAME: Dockerfile
-  DOCKERFILE_NAME2: Dockerfile.iyuu
   TAGS: latest
   ALI_ADD: registry.cn-shenzhen.aliyuncs.com
 
@@ -23,7 +22,7 @@ env:
 #    branches: [ master ]
     paths:
       - '${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}'
-      - '.github/workflows/build.yml'
+      - '.github/workflows/buildx.yml'
 
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
