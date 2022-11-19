@@ -7,15 +7,15 @@ on:
     inputs:
       project:
         description: 'project'
-        required: true
+        required: false
         default: 'qbittorrent'  # 手动填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
       tag:
         description: 'tag'
-        required: true
+        required: false
         default: 'latest'
       ali:
         description: 'ali'
-        required: true
+        required: false
         default: 'registry.cn-shenzhen.aliyuncs.com'
   repository_dispatch:
     types: qbittorrent
