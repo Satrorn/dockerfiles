@@ -1,28 +1,34 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像：qbittorrent
+# 变量设置(自动-手动)：${{ env.PROJECT }} = ${{ github.event.inputs.project }}
+# 变量设置(自动-手动)：${{ env.TAGS }} = ${{ github.event.inputs.tag }}
+name: 手动编译镜像
+
+# 设置触发条件
 on:
+# 手动触发工作流
   workflow_dispatch:
     inputs:
-      version:
-        description: '要构建的版本，可以为beta/rc版，如不输入则默认去检测最新的正式版'
-        required: false
+      project:
+        description: 'project'
+        required: true
+      # 定时请填写default参数
         default: ''
+      tag:
+        description: 'tag'
+        required: true
+      # 定时请填写default参数
+        default: 'latest'
 
-env:
-  ## 镜像名，也是git仓库中的文件夹名
-  IMAGE_NAME: qbittorrent
-  ## Dockerfile文件名称，在这里修改
-  DOCKERFILE_NAME: Dockerfile
-  TAGS: latest
-  ALI_ADDS: registry.cn-shenzhen.aliyuncs.com
+# 仓库触发工作流
+#  repository_dispatch:
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
 #  push:
 #    branches: [ master ]
-    paths:
-      - '${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}'
-      - '.github/workflows/buildx.yml'
+#    paths:
+#      - 'Dockerfile'
+#      - '.github/workflows/build-release.yml'
 
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
@@ -39,8 +45,15 @@ env:
  # 任务集
 jobs:
   build:
+    # 选择虚拟环境
     runs-on: ubuntu-latest
-    name: 基本信息
+    
+    # 自动编译单个镜像名称和版本(只设置一次)(PROJECT为必设)
+    env:
+      PROJECT: clash
+      TAGS: latest
+  
+    # 运行步骤
     steps:
       # 检出master分支
       - name: 出各个模块代码
@@ -56,11 +69,11 @@ jobs:
         id: tag
         # 项目自动和手动切换处
         run: |
-          if [[ -n ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }} | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
-            VERSION=$(cat ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }} | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
+          if [[ -n $(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
+            VERSION=$(cat ${{ github.event.inputs.project }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
             echo "tag=$VERSION" >> $GITHUB_ENV
           else
-            echo "tag=$(date +%Y)$(date +%m)$(date +%d" >> $GITHUB_ENV
+            echo "tag=$(date +%Y)$(date +%m)$(date +%d)" >> $GITHUB_ENV
           fi
 
       - name: 版本分类
@@ -77,9 +90,10 @@ jobs:
         # AUTO_UPDATE_ALI ：
         # 项目自动和手动切换处
         run: |
+          IMAGE_NAME=${{ github.event.inputs.project }}
           ALI_ADD=registry.cn-shenzhen.aliyuncs.com
-        
-          DOCKERHUB_VERSION=${{ env.TAGS }}
+          
+          DOCKERHUB_VERSION=${{ github.event.inputs.tag }}
           TIME_VERSION=${{ env.tag }}
 
           TAG_VERSION="${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${DOCKERHUB_VERSION}"
@@ -113,14 +127,14 @@ jobs:
       # 登录到阿里镜像仓库
       - name: 登陆ALIYUN
         run: |
-          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.PASSWORD }} ${{ env.ALI_ADDS }}
+          docker login -u ${{ secrets.ALIYUN_USERNAME }} -p ${{ secrets.PASSWORD }} registry.cn-shenzhen.aliyuncs.com
 
       # 构建Amd64和Arm64的镜像
       - name: 构建和推送
         uses: docker/build-push-action@v3
         with:
-          context: ${{ env.IMAGE_NAME }}
-          file: ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}
+          # 项目自动和手动切换处
+          context: ${{ github.event.inputs.project }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -137,8 +151,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-          readme: "${{ env.IMAGE_NAME }}/README.md"
+          # 项目自动和手动切换处
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.inputs.project }}
+          # 项目自动和手动切换处
+          readme: "${{ github.event.inputs.project }}/README.md"
 
       # 删除旧的工作流
       - name: Del
