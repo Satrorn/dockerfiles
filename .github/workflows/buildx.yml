@@ -10,7 +10,7 @@ on:
         description: 'project'
         required: true
       # 定时请填写default参数
-        default: 'subweb-docker'
+        default: ''
       tag:
         description: 'tag'
         required: true
