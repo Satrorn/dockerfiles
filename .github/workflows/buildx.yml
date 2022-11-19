@@ -17,15 +17,15 @@ on:
       # 定时请填写default参数
         default: 'latest'
 
-# 仓库触发工作流
-#  repository_dispatch:
-
 env: ## 镜像名，也是git仓库中的文件夹名 
   IMAGE_NAME: ${{ github.event.inputs.project }}
      ## Dockerfile文件名称，在这里修改 
   DOCKERFILE_NAME: Dockerfile
   TAGS: ${{ github.event.inputs.tag }}
 
+# 仓库触发工作流
+  repository_dispatch:
+    types: ${{ env.IMAGE_NAME }}
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
 #  push:
