@@ -1,5 +1,5 @@
 FROM tindy2013/subconverter
-LABEL maintainer="Stille <stille@ioiox.com>"
+LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.7.2
 
@@ -9,7 +9,7 @@ RUN apk add tzdata && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del tzdata
 
-COPY conf/base/all_base.tpl /base
+COPY conf/base/all_base.tpl /base/base
 COPY conf/base/Parents.yml /base
 COPY conf/config /base/config/
 COPY conf/rules /base/rules/
