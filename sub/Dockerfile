@@ -14,8 +14,8 @@ COPY conf/config /base/config/
 COPY conf/rules /base/rules/
 
 RUN git clone https://github.com/satrorn/sub-web app
-COPY conf/sub-web/.env /app
-COPY conf/sub-web/Subconverter.vue /app/src/views
+COPY conf/.env /app
+COPY conf/Subconverter.vue /app/src/views
 RUN cd /app && npm install && npm run build
 
 FROM nginx:1.16-alpine
