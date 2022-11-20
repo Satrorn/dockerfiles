@@ -2,7 +2,7 @@ FROM node:14-alpine AS build
 LABEL maintainer="satrorn <satrorn@gmail.com>"
 
 RUN apk add --update git
-RUN git clone https://github.com/zhongfly/sub-web /sub-web
+RUN git clone https://github.com/satrorn/sub /sub-web
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
