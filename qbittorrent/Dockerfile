@@ -7,12 +7,12 @@ RUN apk update && \
     apk add --update py3-tinydb
 
 RUN git clone https://github.com/satrorn/qbittorrent /app
+COPY requirements.txt /tmp/requirements.txt
+RUN ["pip", "install", "-r", "/tmp/requirements.txt"]
+
 RUN git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
 COPY conf/diy.sh /data/diy/diy.sh
-
-WORKDIR /qb_dispatch
-COPY conf/config.ini /qb_dispatch/config.ini
-RUN python3 -m pip install -r requirement.txt
+COPY conf/config.ini /data/qb_dispatch/config.ini
 
 WORKDIR /data
 VOLUME ["/data"]
