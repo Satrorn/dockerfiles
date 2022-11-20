@@ -9,8 +9,8 @@ RUN apk add tzdata && \
     echo "Asia/Shanghai" > /etc/timezone && \
     apk del tzdata
 
-COPY conf/base/all_base.tpl /base/base
-COPY conf/base/Parents.yml /base
+COPY conf/base/all_base.tpl /base/base/all_base.tpl
+COPY conf/base/Parents.yml /base/base/Parents.yml
 COPY conf/config /base/config/
 COPY conf/rules /base/rules/
 

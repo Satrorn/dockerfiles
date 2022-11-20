@@ -12,7 +12,8 @@ RUN apk update && \
 
 COPY qb_dispatch/ /data/qb_dispatch/
 COPY ui/ /data/ui/
-COPY diy.sh /data
+COPY diy.sh /data/diy/diy.sh
+COPY start.sh /data
 COPY qb_dispatch/requirement.txt /data
 CMD [ "sh", "-c", "/data/start.sh" ]
 
