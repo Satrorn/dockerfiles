@@ -14,8 +14,7 @@ COPY qb_dispatch/ ./qb_dispatch/
 COPY ui/ ./ui/
 COPY diy.sh ./
 COPY qb_dispatch/requirement.txt ./
-#RUN pip install --upgrade pip && \
-#    pip install --no-cache-dir -r requirements.txt
+RUN ./install.sh
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
