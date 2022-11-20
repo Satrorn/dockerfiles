@@ -8,7 +8,7 @@ on:
 #      project:
 #        description: 'project'
 #        required: true
-#        default: 'subweb'  # 手动填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
+#        default: 'sub-web'  # 手动填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
 #      tag:
 #        description: 'tag'
 #        required: true
