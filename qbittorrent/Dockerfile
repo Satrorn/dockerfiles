@@ -14,7 +14,7 @@ COPY qb_dispatch/ /data/qb_dispatch/
 COPY ui/ /data/ui/
 COPY diy.sh /data
 COPY qb_dispatch/requirement.txt /data
-RUN "pip install -r requirements.txt"
+CMD [ "sh", "-c", "/data/start.sh" ]
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
