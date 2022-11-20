@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： [sub-web]
+name: 构建镜像： [subweb]
 
 # 设置触发条件
 on:
@@ -46,7 +46,7 @@ jobs:
     
     env: # 镜像名，也是git仓库中的文件夹名 
       #IMAGE_NAME: ${{ github.event.inputs.project }}
-      IMAGE_NAME: sub-web
+      IMAGE_NAME: subweb
       # Dockerfile文件名称，在这里修改 
       DOCKERFILE_NAME: Dockerfile
       #TAGS: ${{ github.event.inputs.tag }}
