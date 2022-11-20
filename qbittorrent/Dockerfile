@@ -10,12 +10,12 @@ RUN apk update && \
     apk add --update py3-pip && \
     apk add --update py3-tinydb
 
-COPY qb_dispatch/ /data/qb_dispatch/
-COPY ui/ /data/ui/
-COPY diy.sh /data
+COPY qb_dispatch/ ./qb_dispatch/
+COPY ui/ ./ui/
+COPY diy.sh ./
 COPY qb_dispatch/requirement.txt ./
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+#RUN pip install --upgrade pip && \
+#    pip install --no-cache-dir -r requirements.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
