@@ -6,7 +6,10 @@ RUN git clone https://github.com/CareyWang/sub-web app
 COPY conf/.env /app
 COPY start.sh /app
 COPY conf/Subconverter.vue /app/src/views
-RUN cd /app && npm install && npm run build
+
+WORKDIR /app
+RUN npm install
+RUN npm run build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
