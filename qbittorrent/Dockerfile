@@ -10,7 +10,7 @@ RUN apk update && \
     apk add --update py3-pip && \
     apk add --update py3-tinydb
 
-COPY qb_dispatch/ /data/qb_dispatch/
+RUN git clone https://github.com/spartazhc/qb_dispatch qb_dispatch
 COPY ui/ /data/ui/
 COPY diy.sh /data/diy/diy.sh
 COPY start.sh /data/qb_dispatch/start.sh
