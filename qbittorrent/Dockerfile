@@ -7,8 +7,8 @@ RUN apk update && \
     apk add --update py3-tinydb
 
 RUN git clone https://github.com/satrorn/qbittorrent /app
-RUN git clone https://github.com/spartazhc/qb_dispatch.git /app
-COPY conf/diy.sh diy/diy.sh
+RUN git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+COPY conf/diy.sh /data/diy/diy.sh
 
 WORKDIR /qb_dispatch
 COPY conf/config.ini /qb_dispatch/config.ini
