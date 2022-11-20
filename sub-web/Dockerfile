@@ -1,4 +1,4 @@
-FROM node:14-alpine AS build
+FROM alpine:latest as base
 LABEL maintainer="satrorn <satrorn@gmail.com>"
 
 RUN apk add --update git
