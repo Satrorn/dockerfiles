@@ -15,7 +15,7 @@ COPY ui/ /data/ui/
 COPY diy.sh /data
 COPY qb_dispatch/requirement.txt /data
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /data/requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
