@@ -13,9 +13,9 @@ RUN apk update && \
 COPY qb_dispatch/ /data/qb_dispatch/
 COPY ui/ /data/ui/
 COPY diy.sh /data/diy/diy.sh
-COPY start.sh /data
-COPY qb_dispatch/requirement.txt /data
-CMD [ "sh", "-c", "/data/start.sh" ]
+COPY start.sh /data/qb_dispatch/start.sh
+CMD [ "sh", "-c", "/data/qb_dispatch/start.sh" ]
 
+WORKDIR /data
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
