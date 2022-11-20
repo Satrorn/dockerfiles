@@ -12,9 +12,9 @@ RUN apk update && \
 
 COPY qb_dispatch/ /data/qb_dispatch/
 COPY ui/ /data/ui/
-COPY diy.sh /data/diy
-COPY requirements.txt /tmp/requirements.txt
-RUN ["pip", "install", "-r", "/tmp/requirements.txt"]
+COPY diy.sh /data/diy.sh
+COPY requirements.txt /data/requirements.txt
+RUN ["pip", "install", "-r", "/data/requirements.txt"]
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
