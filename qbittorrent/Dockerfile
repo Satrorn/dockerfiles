@@ -10,11 +10,11 @@ RUN apk update && \
     apk add --update py3-pip && \
     apk add --update py3-tinydb
 
-COPY qb_dispatch/ ./qb_dispatch/
-COPY ui/ ./ui/
-COPY diy.sh ./
-COPY qb_dispatch/requirement.txt ./
-RUN ./install.sh
+COPY qb_dispatch/ /data/qb_dispatch/
+COPY ui/ /data/ui/
+COPY diy.sh /data
+COPY qb_dispatch/requirement.txt /data
+RUN /data/install.sh
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
