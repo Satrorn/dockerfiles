@@ -13,7 +13,7 @@ RUN apk update && \
 COPY qb_dispatch/ /data/qb_dispatch/
 COPY ui/ /data/ui/
 COPY diy.sh /data
-COPY qb_dispatch/requirement.txt /data
+COPY qb_dispatch/requirement.txt ./
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
