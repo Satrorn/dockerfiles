@@ -2,7 +2,7 @@ FROM alpine:latest as base
 LABEL maintainer="satrorn <satrorn@gmail.com>"
 
 RUN apk add --update git
-RUN git clone https://github.com/zhongfly/sub-web /app
+RUN git clone https://github.com/zhongfly/sub-web/ /app
 COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
