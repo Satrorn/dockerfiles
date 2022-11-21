@@ -3,12 +3,10 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
-RUN apk add --no-cache \
-      update \
-      git \
-      py3-pip \
-      py3-tinydb 
-
+RUN apk add --update
+RUN apk add --update git
+RUN apk add --update py3-pip
+RUN apk add --update py3-tinydb
 RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 
 COPY ui /data/ui
