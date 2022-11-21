@@ -10,7 +10,7 @@ RUN set -eux && \
    # 更新源地址并更新系统软件
    apk update && apk upgrade
    # 安装依赖包
-   apk add update git && apk add update py3-pip && apk add update py3-tinydb
+   apk add --update git && apk add --update py3-pip && apk add --update py3-tinydb
 
 RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 COPY ui /data/ui
