@@ -12,5 +12,5 @@ COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
 COPY start.sh /data/qb_dispatch/start.sh
 
-CMD [ "sh", "-c", "/data/qb_dispatch/start.sh" ]
+#CMD [ "sh", "-c", "/data/qb_dispatch/start.sh" ]
 VOLUME ["/qb_dispatch"]
