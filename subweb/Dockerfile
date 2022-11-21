@@ -3,8 +3,12 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
+WORKDIR /base
+RUN git clone https://github.com/Satrorn/dockerfiles /base
+
 WORKDIR /app
-RUN git clone https://github.com/Satrorn/dockerfiles/master/zh /app
+COPY --from=0 /base/zh /app
+COPY /base/zh /app
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
 
