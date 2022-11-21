@@ -8,7 +8,7 @@ RUN apk add --no-cache \
       git \
       py3-pip \
       py3-tinydb \
-      && https://github.com/spartazhc/qb_dispatch /qb_dispatch \
+    && git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 
 COPY ui /data/ui \
 COPY diy.sh /data/diy/diy.sh \
