@@ -14,4 +14,4 @@ RUN apk add --no-cache \
     && cp start.sh /data/qb_dispatch/start.sh
 CMD [ "sh", "-c", "/data/qb_dispatch/start.sh" ]
 
-VOLUME ["/dispatch"]
+VOLUME ["/qb_dispatch"]
