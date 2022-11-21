@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 
 RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 
-COPY ui /data/ui \
+COPY ui/ /data/ui \
 COPY diy.sh /data/diy/diy.sh \
 COPY start.sh /data/qb_dispatch/start.sh
 CMD [ "sh", "-c", "/data/qb_dispatch/start.sh" ]
