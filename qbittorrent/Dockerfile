@@ -7,10 +7,9 @@ ENV VERSION 0.1.2
 RUN apk add --no-cache bash git py3-pip py3-tinydb
 
 # ***** 复制文件 *****
-RUN git clone https://github.com/spartazhc/qb_dispatch.git qb_dispatch
+RUN git clone https://github.com/spartazhc/qb_dispatch.git /qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy
-COPY start.sh /data/qb_dispatch
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
