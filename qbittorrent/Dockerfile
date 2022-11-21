@@ -3,7 +3,7 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
-RUN apk add --no-cache \
+RUN apk add --no-cache \
       update \
       git \
       py3-pip \
