@@ -4,7 +4,9 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 ENV VERSION 0.1.2
 
 WORKDIR /app
-COPY --from=satrorn/zh /app /app
+
+RUN apk add --update git
+RUN git clone https://github.com/satrorn/dockerfiles/zh /app
 COPY conf/.env /app
 COPY conf/Subconverter.vue /app/src/views
 RUN npm install
