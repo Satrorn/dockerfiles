@@ -5,7 +5,9 @@ ENV VERSION 0.1.2
 
 # ***** 安装依赖 *****
 RUN apk update && apk upgrade
-RUN apk add --update git && apk add --update py3-pip && apk add --update py3-tinydb
+RUN apk add --update git
+RUN apk add --update py3-pip
+RUN apk add --update py3-tinydb
 
 # ***** 复制文件 *****
 RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
