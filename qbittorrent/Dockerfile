@@ -13,8 +13,8 @@ RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 
 #WORKDIR /data
 COPY ui /data/ui
-COPY diy.sh /data/diy
-RUN pip3 install -r /data/qb_dispatch/requirements.txt
+COPY diy.sh /data/diy/diy.sh
+#RUN pip3 install -r /data/qb_dispatch/requirements.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
