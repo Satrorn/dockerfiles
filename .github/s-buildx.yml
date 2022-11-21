@@ -8,7 +8,7 @@ on:
 #      project:
 #        description: 'project'
 #        required: true
-#        default: 'sub'  # 手动填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
+#        default: 'sub'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
 #      tag:
 #        description: 'tag'
 #        required: true
@@ -46,7 +46,7 @@ jobs:
     
     env: # 镜像名，也是git仓库中的文件夹名 
       #IMAGE_NAME: ${{ github.event.inputs.project }}
-      IMAGE_NAME: sub
+      IMAGE_NAME: sub # 自动时填写（仅填写一次）
       # Dockerfile文件名称，在这里修改 
       DOCKERFILE_NAME: Dockerfile
       #TAGS: ${{ github.event.inputs.tag }}
@@ -65,7 +65,6 @@ jobs:
 
       - name: 获取日期
         id: tag
-        # 项目自动和手动切换处
         run: |
           if [[ -n $(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}') ]]; then
             VERSION=$(cat ${{ env.IMAGE_NAME }}/Dockerfile | awk '{if($1~"ENV" && $2=="VERSION")print $3}')
@@ -128,7 +127,6 @@ jobs:
       - name: 构建和推送
         uses: docker/build-push-action@v3
         with:
-          # 项目自动和手动切换处
           context: ${{ env.IMAGE_NAME }}
           file: ${{ env.IMAGE_NAME }}/${{ env.DOCKERFILE_NAME }}
           platforms: linux/amd64,linux/arm64
@@ -147,9 +145,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          # 项目自动和手动切换处
           repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-          # 项目自动和手动切换处
           readme: "${{ env.IMAGE_NAME }}/README.md"
 
       # 删除旧的工作流
