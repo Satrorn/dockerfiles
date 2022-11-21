@@ -138,8 +138,8 @@ jobs:
             ${{ steps.prepare.outputs.tag_latest }}
             ${{ steps.prepare.outputs.ali_version }}
             ${{ steps.prepare.outputs.ali_latest }}
-            ${{ steps.prepare.outputs.auto_update_tag }}
-            ${{ steps.prepare.outputs.auto_update_ali }}
+#            ${{ steps.prepare.outputs.auto_update_tag }}
+#            ${{ steps.prepare.outputs.auto_update_ali }}
             
       # 同步简介
       - name: 维护信息
