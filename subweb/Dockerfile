@@ -1,13 +1,13 @@
-FROM satrorn/zh
+FROM node:14-alpine AS build
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
 WORKDIR /app
+COPY --from=satrorn/zh /app
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
 
-WORKDIR /app
 RUN npm install
 RUN npm run build
 
