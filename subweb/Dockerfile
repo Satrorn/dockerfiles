@@ -1,12 +1,9 @@
-FROM node:14-alpine AS build
+FROM satrorn/zh
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
-WORKDIR /app
-
-RUN apk add --update git
-RUN git clone https://github.com/satrorn/dockerfiles/zh /app
+COPY . /app
 COPY conf/.env /app
 COPY conf/Subconverter.vue /app/src/views
 RUN npm install
