@@ -10,6 +10,7 @@ RUN apk add --no-cache bash git py3-pip py3-tinydb
 RUN git clone https://github.com/spartazhc/qb_dispatch.git /qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy
+RUN pip install -r /data/qb_dispatch/requirements.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
