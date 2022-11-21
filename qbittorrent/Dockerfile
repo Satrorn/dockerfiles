@@ -3,11 +3,14 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
 
-RUN apk add --update
-RUN apk add --update git
-RUN apk add --update py3-pip
-RUN apk add --update py3-tinydb
-RUN git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
+# ***** 安装依赖 *****
+RUN set -eux && \
+   # 修改源地址
+   sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+   # 更新源地址并更新系统软件
+   apk update && apk upgrade
+   # 安装依赖包
+   apk add update git && apk add update py3-pip && apk add update py3-tinydb && git clone https://github.com/spartazhc/qb_dispatch /qb_dispatch
 
 COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
