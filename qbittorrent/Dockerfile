@@ -1,4 +1,4 @@
-FROM nevinee/qbittorrent
+FROM nevinee/qbittorrent
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.2
