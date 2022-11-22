@@ -1,7 +1,7 @@
-FROM danxiaonuo/subweb
+FROM satrorn/zh
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.1.2
+ENV VERSION 0.1.3
 
 COPY conf/.env /sub-web/.env
 COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
