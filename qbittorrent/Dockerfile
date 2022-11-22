@@ -9,11 +9,10 @@ RUN apk add --no-cache bash git py3-pip py3-tinydb
 WORKDIR /data
 
 # 安装汉化文件
-RUN set -eux \
-    && wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/releases/tag/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz \
-    && tar xzf nightly-20221007.tar.gz \
-    && rm -rf nightly-20221007.tar.gz \
-    && git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/releases/tag/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz
+RUN tar xzf nightly-20221007.tar.gz
+RUN rm -rf nightly-20221007.tar.gz
+RUN git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
 
 # ***** 复制文件 *****
 COPY diy.sh /data/diy/diy.sh
