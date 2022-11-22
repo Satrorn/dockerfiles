@@ -1,7 +1,7 @@
 FROM nevinee/qbittorrent
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.2.1
+ENV VERSION 0.2.2
 
 # ***** 安装依赖 *****
 RUN apk add --no-cache bash git py3-pip py3-tinydb
@@ -9,16 +9,14 @@ RUN apk add --no-cache bash git py3-pip py3-tinydb
 WORKDIR /data
 ADD . .
 # ***** 汉化文件 *****
-RUN set -ex \
-    && wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz \
-    && tar xzf nightly-20221007.tar.gz \
-    && rm -rf nightly-20221007.tar.gz
+RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz
+RUN tar xzf nightly-20221007.tar.gz
+RUN rm -rf nightly-20221007.tar.gz
 
 # ***** 复制文件 *****
-RUN set -ex \
-    && git clone --progress git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch \
-    && cp -rf diy.sh /data/diy/diy.sh \
-    && pip3 install -r /data/qb_dispatch/requirement.txt
+RUN git clone --progress git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+RUN cp -rf diy.sh /data/diy/diy.sh
+RUN pip3 install -r /data/qb_dispatch/requirement.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
