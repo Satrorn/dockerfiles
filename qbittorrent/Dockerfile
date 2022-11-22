@@ -14,7 +14,9 @@ RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive
     rm -rf nightly-20221007.tar.gz &&
 
 # ***** ¸´ÖÆÎÄ¼þ *****
-RUN git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+RUN set -eux \
+    && git clone --progress git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+
 COPY diy.sh /data/diy/diy.sh
 COPY . /data
 
