@@ -15,6 +15,7 @@ RUN yarn install
 FROM dependencies AS build
 WORKDIR /app
 COPY /app/sub-web/. /app
+RUN rm -rf /app/sub-web
 RUN yarn build
 
 FROM nginx:1.16-alpine
