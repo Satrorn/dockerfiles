@@ -12,10 +12,10 @@ WORKDIR /data
 COPY qb_dispatch /data/qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
-COPY requirement.txt /data
-ADD . /data
+#COPY requirement.txt /data
+COPY . /data
 
-RUN pip3 install -r requirement.txt
+RUN pip3 install -r /data/qb_dispatch/requirement.txt
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
