@@ -3,7 +3,6 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.2.2
 
-# ***** ��װ���� *****
 RUN apk add --no-cache bash git py3-pip py3-tinydb
 
 WORKDIR /data
