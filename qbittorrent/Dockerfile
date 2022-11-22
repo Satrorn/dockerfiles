@@ -13,7 +13,7 @@ COPY qb_dispatch /data/qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
 COPY requirements.txt /data
-COPY ./data
+ADD . /data
 
 RUN pip3 install -r requirements.txt
 
