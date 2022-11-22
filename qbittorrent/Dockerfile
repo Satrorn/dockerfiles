@@ -12,7 +12,7 @@ RUN set -eux \
     && mkdir -p /data/nightly \
     && tar xzf nightly-20221007.tar.gz -C /data/nightly \
     && cp -rf /data/nightly/* /data/webui \
-    && rm -rf nightly-20221007.tar.gz
+    && rm -rf nightly-20221007.tar.gz \
     && rm -rf /data/nightly
 
 RUN set -eux \
