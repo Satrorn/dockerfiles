@@ -10,13 +10,11 @@ RUN git clone https://github.com/CareyWang/sub-web.git /sub-web
 COPY conf/.env /sub-web/.env
 COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
-WORKDIR /app
+WORKDIR /sub-web
 RUN npm install
 RUN npm run build
 
-FROM danxiaonuo/nginx:latest
-WORKDIR /www
-COPY --from=build /app/dist /www
-
+FROM nginx:1.16-alpine
+COPY --from=build /sub-web/dist /usr/share/nginx/html
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
