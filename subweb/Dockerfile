@@ -17,9 +17,9 @@ FROM dependencies AS build
 
 WORKDIR /app
 
+COPY /app/sub-web/. /app
 RUN set -eux \
-    && cp -rf /app/sub-web/. /app
-    && rm -rf /app/sub-web
+    && rm -rf /app/sub-web \
     && yarn build
 
 FROM nginx:1.16-alpine
