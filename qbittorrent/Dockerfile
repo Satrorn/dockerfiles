@@ -12,7 +12,10 @@ ADD . .
 RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz
 RUN tar xzf nightly-20221007.tar.gz && rm -rf nightly-20221007.tar.gz
 
-RUN git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch && cp diy.sh /data/diy/diy.sh && pip3 install -r /data/qb_dispatch/requirement.txt
+RUN git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
+RUN pip3 install -r /data/qb_dispatch/requirement.txt
+
+COPY diy.sh /data/diy/diy.sh
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
