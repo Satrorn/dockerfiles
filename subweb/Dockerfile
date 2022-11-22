@@ -5,7 +5,7 @@ ENV VERSION 0.1.5
 
 WORKDIR /app
 
-RUN git clone --progress git clone https://github.com/satrorn/dockerfiles /app/dk
+RUN git clone https://github.com/satrorn/dockerfiles /app/dk
 RUN mv /app/dk/zh/* /app
 RUN rm -rf /app/dk
 
