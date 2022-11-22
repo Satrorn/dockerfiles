@@ -13,7 +13,7 @@ RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive
 RUN tar xzf nightly-20221007.tar.gz
 RUN rm -rf nightly-20221007.tar.gz
 
-RUN git clone git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
+RUN git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
 COPY diy.sh /data/diy/diy.sh
 RUN pip3 install -r /data/qb_dispatch/requirement.txt
 
