@@ -4,15 +4,14 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 ENV VERSION 0.1.3
 
 WORKDIR /app
-RUN apk update
-RUN apk add git
-RUN git clone https://github.com/CareyWang/sub-web.git /app/sub-web
 
-COPY conf/.env /app/sub-web/.env
-COPY conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue
-
-COPY /app/sub-web/package.json /app
-RUN yarn install
+RUN set -eux \
+    && mkdir -p /app/sub-web \
+    && git clone https://github.com/CareyWang/sub-web /app/sub-web \
+    && cp -rf conf/.env /app/sub-web/.env \
+    && cp -rf conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue \
+    && cp -rf /app/sub-web/package.json /app \
+    && yarn install
 
 FROM dependencies AS build
 WORKDIR /app
