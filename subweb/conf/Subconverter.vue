@@ -255,8 +255,8 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "111111": "http://192.168.2.31:25500/sub?", 
-          "222222": "http://192.168.2.37:25500/sub?",
+          "111": "http://192.168.2.31:25500/sub?", 
+          "222": "http://192.168.2.37:25500/sub?",
           "域名つ站": "https://api.loii.ml/sub?",
           "肥羊增强": "https://api.v1.mk/sub?",
           "肥羊备用": "https://sub.d1.mk/sub?",
