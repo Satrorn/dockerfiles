@@ -5,17 +5,17 @@ ENV VERSION 0.1.6
 
 RUN apk add --no-cache bash git curl
 
-WORKDIR /app
+WORKDIR /sub-web
 
 RUN set -eux \
-    && mkdir -p /app/sub-web \
-    && git clone https://github.com/zhongfly/sub-web.git /app/sub-web
+    && mkdir -p /sub-web \
+    && git clone https://github.com/zhongfly/sub-web.git /sub-web
     
-COPY conf/.env /app/sub-web/.env
-COPY conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue
+COPY conf/.env /sub-web/.env
+COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 RUN set -eux \
-    && cp -rf /app/sub-web/package.json /app \
+    && cp -rf /sub-web/package.json /app \
     && yarn install
 
 FROM dependencies AS build
