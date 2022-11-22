@@ -9,7 +9,8 @@ RUN apk add --no-cache bash git py3-pip py3-tinydb
 WORKDIR /data
 
 # ***** 复制文件 *****
-COPY qb_dispatch /data/qb_dispatch
+RUN git clone https://github.com/spartazhc/qb_dispatch.git /data/qb_dispatch
+#COPY qb_dispatch /data/qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
 #COPY requirement.txt /data
