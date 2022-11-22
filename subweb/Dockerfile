@@ -14,12 +14,16 @@ RUN set -eux \
     && yarn install
 
 FROM dependencies AS build
+
 WORKDIR /app
-COPY /app/sub-web/. /app
-RUN rm -rf /app/sub-web
-RUN yarn build
+
+RUN set -eux \
+    && cp -rf /app/sub-web/. /app
+    && rm -rf /app/sub-web
+    && yarn build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
+
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
