@@ -10,10 +10,9 @@ WORKDIR /data
 RUN set -eux \
     && wget -O nightly-20221007.tar.gz "https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz" \
     && mkdir -p /data/nightly \
-    && tar xzf nightly-20221007.tar.gz -C /data/nightly --strip-components=1 \
-    && cp -rf /data/nightly /webui \
-    && rm -rf nightly-20221007.tar.gz \
-    && rm -r /data/nightly
+    && tar xzf nightly-20221007.tar.gz -C /data/nightly \
+    && cp -rf /data/nightly/* /data/webui \
+    && rm -rf nightly-20221007.tar.gz
 
 RUN set -eux \
     && mkdir -p /data/qb_dispatch \
