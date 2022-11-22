@@ -1,7 +1,7 @@
 FROM node:12-alpine AS dependencies
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.1.5
+ENV VERSION 0.1.6
 
 RUN apk add --no-cache bash git curl
 
@@ -22,7 +22,7 @@ FROM dependencies AS build
 
 WORKDIR /app
 
-COPY /app/sub-web/* /app
+COPY /sub-web/ /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
