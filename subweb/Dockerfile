@@ -5,21 +5,21 @@ ENV VERSION 0.1.6
 
 RUN apk add --no-cache bash git curl
 
-WORKDIR /
+WORKDIR /base
 
 RUN set -eux \
-    && mkdir -p /sub-web \
-    && git clone https://github.com/zhongfly/sub-web /sub-web
+    && mkdir -p /base/sub \
+    && git clone https://github.com/zhongfly/sub-web /base/sub
     
-COPY conf/.env /sub-web/.env
-COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
+COPY conf/.env /base/sub/.env
+COPY conf/Subconverter.vue /base/sub/src/views/Subconverter.vue
 
 RUN set -eux \
-    && cp -rf /sub-web/package.json /sub-web \
-#    && cd /sub-web && npm install && npm run build
+    && cp -rf /base/sub/ /base \
+    && cd /base && npm install && npm run build
 
 FROM nginx:1.16-alpine
-#COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /base/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
