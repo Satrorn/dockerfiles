@@ -77,20 +77,20 @@ RUN set -eux && \
 # ##############################################################################
 
 # 工作目录
-WORKDIR /base
+WORKDIR /subconverter
 	
 # 安装subconverter
 RUN set -eux \
     && wget -O subconverter_linux64.tar.gz "https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz" \
-    && mkdir -p /base \
-    && tar xzf subconverter_linux64.tar.gz -C /base \
+    && mkdir -p /subconverter \
+    && tar xzf subconverter_linux64.tar.gz -C /subconverter \
     && rm -rf subconverter_linux64.tar.gz
 
 # 复制配置文件
-COPY conf/base/all_base.tpl /base/subconverter/base/all_base.tpl
-COPY conf/base/Parents.yml /base/subconverter/base/Parents.yml
-COPY conf/rules /base/subconverter/rules
-COPY conf/config /base/subconverter/config
+COPY conf/base/all_base.tpl /subconverter/base/all_base.tpl
+COPY conf/base/Parents.yml /subconverter/base/Parents.yml
+COPY conf/rules /subconverter/rules
+COPY conf/config /subconverter/config
 
 # 容器信号处理
 STOPSIGNAL SIGQUIT
