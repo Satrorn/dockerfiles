@@ -86,11 +86,10 @@ RUN set -eux \
     && rm -rf subconverter_linux64.tar.gz
 
 # 复制配置文件
-RUN set -eux \
-    && cp -rf conf/base/all_base.tpl /base/subconverter/base \
-    && cp -rf conf/base/Parents.yml /base/subconverter/base \
-    && cp -rf conf/rules /base/subconverter/rules \
-    && cp -rf conf/config /base/subconverter/config
+RUN cp -rf conf/base/all_base.tpl /base/subconverter/base
+RUN cp -rf conf/base/Parents.yml /base/subconverter/base
+RUN cp -rf conf/rules /base/subconverter/rules
+RUN cp -rf conf/config /base/subconverter/config
 
 # 容器信号处理
 STOPSIGNAL SIGQUIT
