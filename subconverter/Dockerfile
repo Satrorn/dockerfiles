@@ -86,8 +86,8 @@ RUN set -eux \
     && rm -rf subconverter_linux64.tar.gz
 
 # 复制配置文件
-COPY conf/base/all_base.tpl /base/subconverter/base/all_base.tpl
-COPY conf/base/Parents.yml /base/subconverter/base/Parents.yml
+COPY -rf conf/base/all_base.tpl /base/subconverter/base/all_base.tpl
+COPY -rf conf/base/Parents.yml /base/subconverter/base/Parents.yml
 COPY conf/rules /base/subconverter/rules
 COPY conf/config /base/subconverter/config
 
