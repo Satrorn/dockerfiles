@@ -16,10 +16,10 @@ COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 RUN set -eux \
     && cp -rf /sub-web/package.json /sub-web \
-    && cd /sub-web && npm install && npm run build
+#    && cd /sub-web && npm install && npm run build
 
 FROM nginx:1.16-alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+#COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
