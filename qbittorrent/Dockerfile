@@ -7,13 +7,18 @@ RUN apk add --no-cache bash git py3-pip py3-tinydb
 
 WORKDIR /data
 
-ADD . .
+RUN set -eux \
+    && wget -O nightly-20221007.tar.gz "https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz" \
+    && mkdir -p /data/nightly \
+    && tar xzf nightly-20221007.tar.gz -C /data/nightly --strip-components=1 \
+    && cp -rf /data/nightly /webui \
+    && rm -rf nightly-20221007.tar.gz \
+    && rm -r /data/nightly
 
-RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz
-RUN tar xzf nightly-20221007.tar.gz && rm -rf nightly-20221007.tar.gz
-
-RUN git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
-RUN pip3 install -r /data/qb_dispatch/requirement.txt
+RUN set -eux \
+    && mkdir -p /data/qb_dispatch \
+    && git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
+    && pip3 install -r /data/qb_dispatch/requirement.txt
 
 COPY diy.sh /data/diy/diy.sh
 
