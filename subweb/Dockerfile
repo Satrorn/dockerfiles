@@ -4,6 +4,8 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 ENV VERSION 0.1.3
 
 WORKDIR /app
+RUN apk update
+RUN apk add git
 RUN git clone https://github.com/CareyWang/sub-web.git /app/sub-web
 
 COPY conf/.env /app/sub-web/.env
