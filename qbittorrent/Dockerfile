@@ -19,6 +19,7 @@ RUN set -eux \
     && pip3 install -r /data/qb_dispatch/requirement.txt
 
 COPY diy.sh /data/diy/diy.sh
+COPY config.ini /data/qb_dispatch/config.ini
 
 VOLUME ["/data"]
 ENTRYPOINT ["/init"]
