@@ -16,7 +16,7 @@ RUN yarn install
 
 FROM dependencies AS build
 WORKDIR /app
-COPY /sub-web/. /app
+COPY /app/sub-web/. /app
 RUN rm -rf /sub-web
 RUN yarn build
 
