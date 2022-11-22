@@ -7,6 +7,7 @@ ENV VERSION 0.2.2
 RUN apk add --no-cache bash git py3-pip py3-tinydb
 
 WORKDIR /data
+
 ADD . .
 
 RUN wget --no-check-certificate -P /data https://github.com/CzBiX/qb-web/archive/refs/tags/nightly-20221007.tar.gz -O /data/nightly-20221007.tar.gz
