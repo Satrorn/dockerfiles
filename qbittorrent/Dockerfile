@@ -17,7 +17,7 @@ RUN set -eux \
 
 RUN set -eux \
     && mkdir -p /data/qb_dispatch \
-    && git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch
+    && git clone https://github.com/spartazhc/qb_dispatch /data/qb_dispatch \
     && pip3 install -r /data/qb_dispatch/requirement.txt
 
 COPY diy.sh /data/diy/diy.sh
