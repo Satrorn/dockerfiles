@@ -9,9 +9,12 @@ WORKDIR /app
 
 RUN set -eux \
     && mkdir -p /app/sub-web \
-    && git clone https://github.com/zhongfly/sub-web.git /app/sub-web \
-#    && cp -rf conf/.env /app/sub-web/.env \
-    && cp -rf conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue \
+    && git clone https://github.com/zhongfly/sub-web.git /app/sub-web
+    
+COPY conf/.env /app/sub-web/.env
+COPY conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue
+
+RUN set -eux \
     && cp -rf /app/sub-web/package.json /app \
     && yarn install
 
