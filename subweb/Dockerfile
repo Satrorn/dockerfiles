@@ -9,7 +9,7 @@ WORKDIR /sub-web
 
 RUN set -eux \
     && mkdir -p /sub-web \
-    && git clone https://github.com/zhongfly/sub-web.git /sub-web
+    && git clone https://github.com/zhongfly/sub-web /sub-web
     
 COPY conf/.env /sub-web/.env
 COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
