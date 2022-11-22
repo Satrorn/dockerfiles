@@ -12,7 +12,7 @@ WORKDIR /data
 COPY qb_dispatch /data/qb_dispatch
 COPY ui /data/ui
 COPY diy.sh /data/diy/diy.sh
-ADD qb_dispatch/requirements.txt /data/requirements.txt
+ADD requirements.txt /data/requirements.txt
 
 RUN pip3 install -r requirements.txt
 
