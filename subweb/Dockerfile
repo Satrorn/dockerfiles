@@ -1,13 +1,13 @@
 FROM node:12-alpine AS dependencies
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.1.4
+ENV VERSION 0.1.5
 
 WORKDIR /app
 
 RUN set -eux \
     && mkdir -p /app/sub-web \
-    && git clone https://github.com/CareyWang/sub-web /app/sub-web \
+    && git clone https://github.com/zhongfly/sub-web.git /app/sub-web \
     && cp -rf conf/.env /app/sub-web/.env \
     && cp -rf conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue \
     && cp -rf /app/sub-web/package.json /app \
@@ -17,7 +17,7 @@ FROM dependencies AS build
 
 WORKDIR /app
 
-COPY /app/sub-web/* /app
+COPY /app/sub-web /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
