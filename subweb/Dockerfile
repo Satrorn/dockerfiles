@@ -10,9 +10,9 @@ RUN mv /app/dk/zh/* /app
 RUN rm -rf /app/dk
 
 RUN rm -rf /app/.env
-RUN cp -rf conf/.env /app/.env
+COPY -rf conf/.env /app/.env
 RUN rm -rf /app/src/views/Subconverter.vue
-RUN cp -rf conf/Subconverter.vue /app/src/views/Subconverter.vue
+COPY -rf conf/Subconverter.vue /app/src/views/Subconverter.vue
 RUN npm install && npm run build
 
 FROM nginx:1.16-alpine
