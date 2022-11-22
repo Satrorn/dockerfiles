@@ -1,4 +1,4 @@
-FROM dependencies AS build
+FROM node:12-alpine AS dependencies
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
 ENV VERSION 0.1.3
