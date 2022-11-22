@@ -81,8 +81,9 @@ WORKDIR /base
 	
 # 安装subconverter
 RUN set -eux \
-    && wget --no-check-certificate -P /base https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz -O /base/subconverter_linux64.tar.gz \
-    && tar xzf subconverter_linux64.tar.gz \
+    && wget -O subconverter_linux64.tar.gz "https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz" \
+    && mkdir -p /base \
+    && tar xzf subconverter_linux64.tar.gz -C /base \
     && rm -rf subconverter_linux64.tar.gz
 
 # 复制配置文件
