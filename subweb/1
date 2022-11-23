@@ -1,6 +1,7 @@
+FROM satrorn/zh
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.1.6
+ENV VERSION 0.1.7
 
 RUN apk add --no-cache bash git curl
 
