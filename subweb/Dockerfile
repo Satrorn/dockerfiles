@@ -67,9 +67,8 @@ RUN set -eux \
 # 工作目录
 WORKDIR /app
 
-RUN set -eux \
-    && cp /sub-web/package.json /app \
-    && yarn install
+COPY /sub-web/package.json /app
+RUN yarn install
 
 # ##############################################################################
     
