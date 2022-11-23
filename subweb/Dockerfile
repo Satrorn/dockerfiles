@@ -14,12 +14,12 @@ RUN set -eux \
 COPY conf/.env /base/sub/.env
 COPY conf/Subconverter.vue /base/sub/src/views/Subconverter.vue
 
+WORKDIR /sub
 RUN set -eux \
-    && cp -rf /base/sub/ /base \
-    && cd /base && npm install && npm run build
+    && cd /sub && npm install && npm run build
 
 FROM nginx:1.16-alpine
-COPY /base/dist /usr/share/nginx/html
+COPY --from=build /base/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
