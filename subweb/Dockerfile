@@ -8,6 +8,7 @@ RUN apk add --no-cache bash git curl zip
 WORKDIR /data
 
 RUN set -eux \
+    && mkdir -p /data \
     && mkdir -p /data/zh \
     && git clone https://github.com/satrorn/dockerfiles /data/zh \
     && cp -rf /data/zh/* /data
