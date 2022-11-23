@@ -285,6 +285,11 @@ export default {
             label: "✔",
             options: [
               {
+                label: "¢",
+                value:
+                  ""
+              },
+              {
                 label: "域名つ站",
                 value:
                   "config/Part.ini"
