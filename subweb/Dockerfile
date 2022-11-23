@@ -1,28 +1,27 @@
-# ---- Dependencies ----
 FROM node:12-alpine AS dependencies
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 
-ENV VERSION 0.1.9
+ENV VERSION 0.2.0
 
-RUN apk add --no-cache bash git curl
-WORKDIR /app
+RUN apk add --no-cache bash git curl zip
+
+WORKDIR /data
+
 RUN set -eux \
-    && mkdir -p /app/all \
-    && git clone https://github.com/satrorn/dockerfiles /app/all \
-    && mkdir -p /app/zz \
-    && cp /app/all/zh /app/zz \
+    && mkdir -p /data/zh \
+    && git clone https://github.com/satrorn/dockerfiles /data/zh \
+    && cp -rf /data/zh/* /data
     
-COPY conf/.env /app/zz/.env
-COPY conf/Subconverter.vue /app/zz/src/views/Subconverter.vue
+COPY conf/.env /data/.env
+COPY conf/Subconverter.vue /data/src/views/Subconverter.vue
 
-WORKDIR /app
-COPY /app/zz/package.json ./app
+WORKDIR /data
+COPY /data/package.json ./data
 RUN yarn install
 
-# ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY /app/zz/. /app
+COPY /data/. /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
