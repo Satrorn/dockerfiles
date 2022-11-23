@@ -19,7 +19,7 @@ RUN set -eux \
     && cd /base && npm install && npm run build
 
 FROM nginx:1.16-alpine
-COPY --from=build /base/dist /usr/share/nginx/html
+COPY /base/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
