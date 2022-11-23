@@ -23,7 +23,7 @@ on:
   push:
 #    branches: [ master ]
     paths:
-      - 'Dockerfile'
+      - 'qbittorrent/Dockerfile'
       - '.github/workflows/qb-buildx.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
