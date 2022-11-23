@@ -9,7 +9,7 @@ RUN apk add --no-cache bash git curl
 RUN set -eux \
     && mkdir -p /app/zh \
     && git clone https://github.com/satrorn/dockerfiles/zh /app/zh
-    && cp /app/zh/. /app
+    && cp /app/zh /app
     
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
