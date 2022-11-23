@@ -282,25 +282,25 @@ export default {
         ],
         remoteConfig: [
         {
-            label: "✔",
+            label: "域",
             options: [
               {
-                label: "✈域名つ站",
+                label: "域名つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "✈精简つ站",
+                label: "精简つ站",
                 value:
                   "config/Mini.ini"
               },
               {
-                label: "✈完整つ站",
+                label: "完整つ站",
                 value:
                   "config/Full.ini"
               },
               {
-                label: "✈域名つ站",
+                label: "域名つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               }
