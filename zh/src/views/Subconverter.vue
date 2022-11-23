@@ -255,8 +255,7 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "1111换1": "http://192.168.2.31:25500/sub?", 
-          "2222換2": "http://192.168.2.37:25500/sub?",
+          "域名つ站": "http://192.168.2.31:25500/sub?", 
           "域名つ站": "https://api.loii.ml/sub?",
           "肥羊增强": "https://api.v1.mk/sub?",
           "肥羊备用": "https://sub.d1.mk/sub?",
@@ -270,7 +269,6 @@ export default {
         },
         backendOptions: [
           {value: "http://192.168.2.31:25500/sub?" },
-          {value: "http://192.168.2.37:25500/sub?"},   
           {value: "https://api.loii.ml/sub?"},
           {value: "https://api.v1.mk/sub?"},
           {value: "https://sub.d1.mk/sub?"},
@@ -284,25 +282,25 @@ export default {
         ],
         remoteConfig: [
         {
-            label: "规则版本",
+            label: "域",
             options: [
               {
-                label: "自用版",
+                label: "域名つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "精简版",
+                label: "精简つ站",
                 value:
                   "config/Mini.ini"
               },
               {
-                label: "完整版",
+                label: "完整つ站",
                 value:
                   "config/Full.ini"
               },
               {
-                label: "在线版",
+                label: "在线つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               }
