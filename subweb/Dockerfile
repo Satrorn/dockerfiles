@@ -16,7 +16,7 @@ COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
-COPY /app/package.json ./
+COPY /app/package.json /app
 RUN yarn install
 
 # ---- Build ----
