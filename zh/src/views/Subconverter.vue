@@ -255,17 +255,17 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "🔕区域つ站": "http://192.168.2.31:25500/sub?", 
-          "🔔域名つ站": "https://api.loii.ml/sub?",
-          "🐶⒈站": "https://api.v1.mk/sub?",
-          "🐵⒉站": "https://sub.d1.mk/sub?",
-          "🦁⒊站": "https://api.tsutsu.one/sub?",
-          "🐹⒋站": "https://v.id9.cc/sub?",
-          "🦊⒌站": "https://www.nameless13.com/sub?",
-          "🙉⒍站": "https://sub.xeton.dev/sub?",
-          "🐼⒎站": "https://api.dler.io/sub?",
-          "🐻‍❄️⒏站": "https://api.asnil.ml/sub?",          
-          "🐯⒐站": "https://api.asnil.tk/sub?",
+          "🔔域名つ站": "https://api.loii.ml/sub?", 
+          "🔕区域つ站": "http://192.168.2.31:25500/sub?",
+          "⒈站": "https://api.v1.mk/sub?",
+          "⒉站": "https://sub.d1.mk/sub?",
+          "⒊站": "https://api.tsutsu.one/sub?",
+          "⒋站": "https://v.id9.cc/sub?",
+          "⒌站": "https://www.nameless13.com/sub?",
+          "⒍站": "https://sub.xeton.dev/sub?",
+          "⒎站": "https://api.dler.io/sub?",
+          "⒏站": "https://api.asnil.ml/sub?",          
+          "⒐站": "https://api.asnil.tk/sub?",
         },
         backendOptions: [
           {value: "http://192.168.2.31:25500/sub?" },
@@ -290,14 +290,14 @@ export default {
                   ""
               },
               {
-                label: "🔕区域つ站",
-                value:
-                  "config/Part.ini"
-              },
-              {
                 label: "🔔域名つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
+              },
+              {
+                label: "🔕区域つ站",
+                value:
+                  "config/Part.ini"
               },
               {
                 label: "👁‍🗨精简つ站",

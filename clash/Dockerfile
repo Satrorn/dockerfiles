@@ -49,7 +49,9 @@ RUN set -eux \
     && export CLASH_DOWN=$(curl -s https://api.github.com/repos/Dreamacro/clash/releases | jq -r .[].assets[].browser_download_url| grep -i 'premium'| grep -i 'clash-linux-amd64') \
     && wget --no-check-certificate -O /tmp/clash.gz $CLASH_DOWN \
     && cd /tmp && gzip -d clash.gz && mv clash / \
-    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
+    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
+    && wget --no-check-certificate -O /config.yaml https://https://suo.yt/5HdM1iJ
+
 # ##############################################################################
 
 ##########################################
@@ -88,7 +90,8 @@ ENV PKG_DEPS=$PKG_DEPS
 # 拷贝clash
 COPY --from=builder /Country.mmdb /root/.config/clash/
 COPY --from=builder /clash /usr/bin/clash
-COPY ["./conf/clash/config.yaml", "/root/.config/clash/"]
+#COPY ["./conf/clash/config.yaml", "/root/.config/clash/"]
+COPY --from=builder /config.yaml /root/.config/clash/
 
 # ***** 安装依赖 *****
 RUN set -eux && \
