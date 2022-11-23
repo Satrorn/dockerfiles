@@ -24,7 +24,7 @@ on:
 #    branches: [ master ]
     paths:
       - 'subconverter/Dockerfile'
-      - '.github/workflows/subcom-build.yml'
+      - '.github/workflows/subcon-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
