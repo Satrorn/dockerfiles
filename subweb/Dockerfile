@@ -9,18 +9,21 @@ WORKDIR /app
 RUN set -eux \
     && mkdir -p /all \
     && git clone https://github.com/satrorn/dockerfiles /all \
+    && mkdir -p /zz \
+    && cp -rf /all/zh /zz \
+    && rm -rf /all
     
-COPY conf/.env /all/zh/.env
-COPY conf/Subconverter.vue /all/zh/src/views/Subconverter.vue
+COPY conf/.env /zz/.env
+COPY conf/Subconverter.vue /zz/src/views/Subconverter.vue
 
 WORKDIR /app
-COPY /all/zh/package.json ./
+COPY /zz/package.json ./
 RUN yarn install
 
 # ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY /all/zh/. /app
+COPY /zz/. /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
