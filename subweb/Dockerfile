@@ -5,25 +5,25 @@ LABEL maintainer="Satrorn <satrorn@gmail.com>"
 ENV VERSION 0.1.9
 
 RUN apk add --no-cache bash git curl
-
+WORKDIR /app
 RUN set -eux \
-    && mkdir -p /app/zh \
-    && git clone https://github.com/satrorn/dockerfiles/zh /app/zh \
+    && mkdir -p /all \
+    && git clone https://github.com/satrorn/dockerfiles /all \
     
-COPY conf/.env /app/zh/.env
-COPY conf/Subconverter.vue /app/zh/src/views/Subconverter.vue
+COPY conf/.env /all/zh/.env
+COPY conf/Subconverter.vue /all/zh/src/views/Subconverter.vue
 
-WORKDIR /zh
-COPY /app/zh/package.json ./
+WORKDIR /app
+COPY /all/zh/package.json ./
 RUN yarn install
 
 # ---- Build ----
 FROM dependencies AS build
-WORKDIR /zh
-COPY . /zh
+WORKDIR /app
+COPY /all/zh/. /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
-COPY --from=build /zh/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
