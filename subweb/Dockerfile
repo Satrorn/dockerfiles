@@ -13,12 +13,11 @@ RUN set -eux \
     
 COPY conf/.env /base/sub/.env
 COPY conf/Subconverter.vue /base/sub/src/views/Subconverter.vue
-
-# ---- Dependencies ---- 
- FROM node:16-alpine AS dependencies 
- WORKDIR /app 
- COPY /base/sub/package.json ./ 
- RUN yarn install 
+ 
+RUN mkdir -p /app
+WORKDIR /app 
+COPY /base/sub/package.json ./app 
+RUN yarn install 
   
  # ---- Build ---- 
  FROM dependencies AS build 
@@ -26,7 +25,7 @@ COPY conf/Subconverter.vue /base/sub/src/views/Subconverter.vue
  COPY /base/sub/. /app 
  RUN yarn build 
   
- FROM nginx:1.16-alpine 
- COPY --from=build /app/dist /usr/share/nginx/html 
- EXPOSE 80 
- CMD [ "nginx", "-g", "daemon off;" ]
+FROM nginx:1.16-alpine 
+COPY --from=build /app/dist /usr/share/nginx/html 
+EXPOSE 80 
+CMD [ "nginx", "-g", "daemon off;" ]
