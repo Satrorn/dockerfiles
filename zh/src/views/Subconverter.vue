@@ -255,7 +255,7 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "域名つ站": "http://192.168.2.31:25500/sub?", 
+          "区域つ站": "http://192.168.2.31:25500/sub?", 
           "域名つ站": "https://api.loii.ml/sub?",
           "友つ⒈站": "https://api.v1.mk/sub?",
           "友つ⒉站": "https://sub.d1.mk/sub?",
