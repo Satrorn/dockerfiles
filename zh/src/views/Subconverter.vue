@@ -255,8 +255,8 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "✍本地つ站": "http://192.168.2.31:25500/sub?", 
-          "✍域名つ站": "https://api.loii.ml/sub?",
+          "✈本地つ站": "http://192.168.2.31:25500/sub?", 
+          "✈域名つ站": "https://api.loii.ml/sub?",
           "✈": "https://api.v1.mk/sub?",
           "✈": "https://sub.d1.mk/sub?",
           "✈": "https://api.tsutsu.one/sub?",
@@ -285,7 +285,7 @@ export default {
             label: "✔",
             options: [
               {
-                label: "✍域名つ站",
+                label: "✈域名つ站",
                 value:
                   "config/Part.ini"
               },
@@ -300,7 +300,7 @@ export default {
                   "config/Full.ini"
               },
               {
-                label: "✍在线つ站",
+                label: "✈在线つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               }
