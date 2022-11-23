@@ -255,22 +255,20 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "1111换1": "http://192.168.2.31:25500/sub?", 
-          "2222換2": "http://192.168.2.37:25500/sub?",
+          "域名つ站": "http://192.168.2.31:25500/sub?", 
           "域名つ站": "https://api.loii.ml/sub?",
-          "肥羊增强": "https://api.v1.mk/sub?",
-          "肥羊备用": "https://sub.d1.mk/sub?",
-          "つつ多地": "https://api.tsutsu.one/sub?",
-          "品云提供": "https://v.id9.cc/sub?",
-          "nameless13": "https://www.nameless13.com/sub?",
-          "subconverter": "https://sub.xeton.dev/sub?",
-          "lhie1": "https://api.dler.io/sub?",
-          "heroku": "https://api.asnil.ml/sub?",          
-          "render": "https://api.asnil.tk/sub?",
+          "名つ站": "https://api.v1.mk/sub?",
+          "名つ站": "https://sub.d1.mk/sub?",
+          "名つ站": "https://api.tsutsu.one/sub?",
+          "名つ站": "https://v.id9.cc/sub?",
+          "名つ站": "https://www.nameless13.com/sub?",
+          "名つ站": "https://sub.xeton.dev/sub?",
+          "名つ站": "https://api.dler.io/sub?",
+          "名つ站": "https://api.asnil.ml/sub?",          
+          "名つ站": "https://api.asnil.tk/sub?",
         },
         backendOptions: [
           {value: "http://192.168.2.31:25500/sub?" },
-          {value: "http://192.168.2.37:25500/sub?"},   
           {value: "https://api.loii.ml/sub?"},
           {value: "https://api.v1.mk/sub?"},
           {value: "https://sub.d1.mk/sub?"},
@@ -284,25 +282,25 @@ export default {
         ],
         remoteConfig: [
         {
-            label: "规则版本",
+            label: "域",
             options: [
               {
-                label: "自用版",
+                label: "域名つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "精简版",
+                label: "精简つ站",
                 value:
                   "config/Mini.ini"
               },
               {
-                label: "完整版",
+                label: "完整つ站",
                 value:
                   "config/Full.ini"
               },
               {
-                label: "在线版",
+                label: "域名つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               }
