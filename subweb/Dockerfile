@@ -9,7 +9,7 @@ WORKDIR /app
 
 RUN set -eux \
     && git clone https://github.com/zhongfly/sub-web /sub-web \
-    && mv /sub-web/* /app
+    && mv /sub-web/* /app/
    
 COPY conf/.env /.env
 COPY conf/Subconverter.vue /src/views/Subconverter.vue
