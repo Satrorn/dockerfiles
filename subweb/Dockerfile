@@ -14,7 +14,7 @@ COPY conf/.env /app/zh/.env
 COPY conf/Subconverter.vue /app/zh/src/views/Subconverter.vue
 
 WORKDIR /zh
-COPY package.json ./
+COPY /app/zh/package.json ./
 RUN yarn install
 
 # ---- Build ----
