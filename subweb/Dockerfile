@@ -14,12 +14,19 @@ RUN set -eux \
 COPY conf/.env /base/sub/.env
 COPY conf/Subconverter.vue /base/sub/src/views/Subconverter.vue
 
-WORKDIR /sub
-RUN set -eux \
-    && cd /sub && npm install && npm run build
-
-FROM nginx:1.16-alpine
-COPY --from=build /base/dist /usr/share/nginx/html
-
-EXPOSE 80
-CMD [ "nginx", "-g", "daemon off;" ]
+# ---- Dependencies ---- 
+ FROM node:16-alpine AS dependencies 
+ WORKDIR /app 
+ COPY /base/sub/package.json ./ 
+ RUN yarn install 
+  
+ # ---- Build ---- 
+ FROM dependencies AS build 
+ WORKDIR /app 
+ COPY /base/sub/. /app 
+ RUN yarn build 
+  
+ FROM nginx:1.16-alpine 
+ COPY --from=build /app/dist /usr/share/nginx/html 
+ EXPOSE 80 
+ CMD [ "nginx", "-g", "daemon off;" ]
