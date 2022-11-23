@@ -7,8 +7,9 @@ ENV VERSION 0.1.7
 RUN apk add --no-cache bash git curl
 
 RUN set -eux \
+    && mkdir -p /app \
     && mkdir -p /app/zh \
-    && git clone https://github.com/satrorn/dockerfiles/zh /app/zh
+    && git clone https://github.com/satrorn/dockerfiles/zh /app/zh \
     && cp /app/zh /app
     
 COPY conf/.env /app/.env
