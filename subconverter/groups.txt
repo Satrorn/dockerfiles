@@ -1,12 +1,21 @@
-🔰 PROXY`select`[]🎯 DIRECT`.*
-🎬 Media`select`(香港|HK|hk|🇭🇰|台湾|TW|tw|新加坡|SG|sg|🇸🇬)
-▶️ YouTube`select`[]🔰 PROXY`[]🎬 Media`.*
-🍿 Netflix`select`[]🔰 PROXY`[]🎬 Media`.*
-🐰 DisneyPlus`select`[]🔰 PROXY`[]🎬 Media`.*
-📺 AppleTV`select`[]🔰 PROXY`[]🎬 Media`.*
-🍎 Apple`select`[]🎯 DIRECT`[]🔰 PROXY`.*
-Ⓜ️ Microsoft`select`[]🎯 DIRECT`[]🔰 PROXY`.*
-💰 PayPal`select`[]🎯 DIRECT`[]🔰 PROXY`.*
-🚫 AdBlock`select`[]🎯 DIRECT`[]🔰 PROXY`[]REJECT`.*
-🐟 Other`select`[]🎯 DIRECT`[]🔰 PROXY`.*
-🎯 DIRECT`select`[]DIRECT
+🎭 全球站点,rules/Lins/Line.list
+🎭 国外网站,rules/Lins/Country.list
+🎯 全球直连,rules/ACL4SSR/Clash/LocalAreaNetwork.list
+🎯 全球直连,rules/ACL4SSR/Clash/UnBan.list
+🍃 广告净化,rules/ACL4SSR/Clash/BanAD.list
+🍃 广告净化,rules/ACL4SSR/Clash/BanProgramAD.list
+🎯 全球直连,rules/ACL4SSR/Clash/Ruleset/GoogleFCM.list
+🎯 全球直连,rules/ACL4SSR/Clash/GoogleCN.list
+🎯 全球直连,rules/ACL4SSR/Clash/OneDrive.list
+🎯 全球直连,rules/ACL4SSR/Clash/Microsoft.list
+🎯 全球直连,rules/ACL4SSR/Clash/Apple.list
+📲 电报消息,rules/ACL4SSR/Clash/Telegram.list
+📹 油管视频,rules/ACL4SSR/Clash/Ruleset/YouTube.list
+🌏 国内媒体,rules/ACL4SSR/Clash/ChinaMedia.list
+🌍 国外媒体,rules/ACL4SSR/Clash/ProxyMedia.list
+🚀 节点选择,rules/ACL4SSR/Clash/ProxyGFWlist.list
+🎯 全球直连,rules/ACL4SSR/Clash/ChinaDomain.list
+🎯 全球直连,rules/ACL4SSR/Clash/ChinaCompanyIp.list
+🎯 全球直连,rules/ACL4SSR/Clash/Download.list
+🎯 全球直连,[]GEOIP,CN
+🐟 漏网之鱼,[]FINAL

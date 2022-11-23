@@ -1,5 +1,5 @@
 FROM tindy2013/subconverter
-LABEL maintainer="Stille <stille@ioiox.com>"
+LABEL maintainer="Satrorn <satrorn@gmaill.com>"
 
 ENV VERSION 0.7.2
 
@@ -11,6 +11,10 @@ RUN apk add tzdata && \
 
 COPY groups.txt rulesets.txt /base/snippets/
 COPY pref.yml /base
+COPY conf/base/all_base.tpl /subconverter/base/all_base.tpl
+COPY conf/base/Parents.yml /subconverter/base/Parents.yml
+COPY conf/rules /subconverter/rules
+COPY conf/config /subconverter/config
 
 EXPOSE 25500
 
