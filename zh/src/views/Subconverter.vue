@@ -290,12 +290,12 @@ export default {
                   ""
               },
               {
-                label: "🔕域名つ站",
+                label: "🔕区域つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "🔔在线つ站",
+                label: "🔔域名つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               },
