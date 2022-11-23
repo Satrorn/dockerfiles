@@ -14,7 +14,7 @@ COPY conf/.env /sub-web/.env
 COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
  
 WORKDIR /app 
-COPY --from=builder /sub-web/package.json ./
+COPY /sub-web/package.json ./
 RUN yarn install 
 
 FROM dependencies AS build 
