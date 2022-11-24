@@ -8,19 +8,18 @@ RUN apk add --no-cache bash git curl wget jq make zip unzip
 WORKDIR /app
 
 RUN set -eux \
-    && git clone https://github.com/zhongfly/sub-web /sub-web \
-    && mv /sub-web/* /app/
+       && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web
    
-COPY conf/.env /.env
-COPY conf/Subconverter.vue /src/views/Subconverter.vue
+COPY conf/.env /sub-web/.env
+COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
  
 WORKDIR /app 
-COPY package.json ./
+COPY /sub-web/package.json ./
 RUN yarn install 
 
 FROM dependencies AS build 
 WORKDIR /app 
-COPY . /app
+COPY /sub-web/. /app
 RUN yarn build 
   
 FROM nginx:1.16-alpine 
