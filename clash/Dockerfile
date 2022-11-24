@@ -49,9 +49,9 @@ RUN set -eux \
     && export CLASH_DOWN=$(curl -s https://api.github.com/repos/Dreamacro/clash/releases | jq -r .[].assets[].browser_download_url| grep -i 'premium'| grep -i 'clash-linux-amd64') \
     && wget --no-check-certificate -O /tmp/clash.gz $CLASH_DOWN \
     && cd /tmp && gzip -d clash.gz && mv clash / \
-    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
+    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
     && curl -o /config.yaml 'https://api.loii.ml/sub?target=clash&url=https%3A%2F%2Fxn--4gq62f52gdss.com%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3Dv61eheqezdgs3uvhztpmq4d7u65s40e1%7Chttps%3A%2F%2Fn.toip.ml%2Fclash%2Fproxies%7Chttps%3A%2F%2Ftoip.ml%2Fclash%2Fproxies&insert=false&config=https%3A%2F%2Floip.ml%2Flink%2Fconf%2FPartMini.ini'
-
+#
 # ##############################################################################
 
 ##########################################
