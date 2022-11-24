@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： [ZH]
+name: 构建镜像： [zh]
 
 # 设置触发条件
 on:
@@ -23,8 +23,10 @@ on:
   push:
 #    branches: [ master ]
     paths:
-#      - 'zh/Dockerfile'
-      - '.github/workflows/sub-build.yml'
+      - 'zh/Dockerfile'
+      - 'zh/.env'
+      - 'zh/src/views/Subconverter.vue'
+      - '.github/workflows/zh-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
