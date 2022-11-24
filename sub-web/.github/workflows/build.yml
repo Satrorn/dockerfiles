@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Get dependencies and build
+      run: |
+        yarn install
+        yarn build
+    - name: Upload
+      uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: dist/
+    - name: Push update to now-subconverter
+      if: ${{ github.ref == 'refs/heads/master' }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.REPO_TOKEN }}
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: 'now-subconverter',
+            workflow_id: 'sub-web.yml',
+            ref: 'master',
+          });
+
