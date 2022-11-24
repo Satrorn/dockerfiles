@@ -24,6 +24,7 @@ on:
 #    branches: [ master ]
     paths:
       - 'clash/Dockerfile'
+      - 'clash/conf/clash/config.yaml'      
       - '.github/workflows/clash-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
