@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： [zh]
+name: 构建镜像： [sub-web]
 
 # 设置触发条件
 on:
@@ -8,7 +8,7 @@ on:
 #      project:
 #        description: 'project'
 #        required: true
-#        default: 'zh'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
+#        default: 'sub-web'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
 #      tag:
 #        description: 'tag'
 #        required: true
@@ -23,9 +23,9 @@ on:
   push:
 #    branches: [ master ]
     paths:
-      - 'zh/Dockerfile'
-      - 'zh/.env'
-      - 'zh/src/views/Subconverter.vue'
+      - 'sub-web/Dockerfile'
+      - 'sub-web/.env'
+      - 'sub-web/src/views/Subconverter.vue'
       - '.github/workflows/zh-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
@@ -48,7 +48,7 @@ jobs:
     
     env: # 镜像名，也是git仓库中的文件夹名 
       #IMAGE_NAME: ${{ github.event.inputs.project }}
-      IMAGE_NAME: zh # 自动时填写（仅填写一次）
+      IMAGE_NAME: sub-web # 自动时填写（仅填写一次）
       # Dockerfile文件名称，在这里修改 
       DOCKERFILE_NAME: Dockerfile
       #TAGS: ${{ github.event.inputs.tag }}
