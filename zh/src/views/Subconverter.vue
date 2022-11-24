@@ -255,8 +255,8 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "✈域名つ站": "https://api.loii.ml/sub?", 
-          "✈区域つ站": "http://192.168.2.31:25500/sub?",
+          "☎域名つ站": "https://api.loii.ml/sub?", 
+          "☎区域つ站": "http://192.168.2.31:25500/sub?",
           "Ⅰ": "https://api.v1.mk/sub?",
           "Ⅱ": "https://sub.d1.mk/sub?",
           "Ⅲ": "https://api.tsutsu.one/sub?",
@@ -282,30 +282,30 @@ export default {
         ],
         remoteConfig: [
         {
-            label: "✉",
+            label: "✈",
             options: [
               {
-                label: "☂",
+                label: "✌",
                 value:
                   ""
               },
               {
-                label: "✈域名つ站",
+                label: "☎域名つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               },
               {
-                label: "✈区域つ站",
+                label: "☎区域つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "👁‍🗨精简つ站",
+                label: "☀精简つ站",
                 value:
                   "config/Mini.ini"
               },
               {
-                label: "👁‍🗨完整つ站",
+                label: "☀完整つ站",
                 value:
                   "config/Full.ini"
               }
