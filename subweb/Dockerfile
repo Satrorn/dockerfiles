@@ -15,10 +15,12 @@ COPY conf/.env /.env
 COPY conf/Subconverter.vue /src/views/Subconverter.vue
  
 WORKDIR /app 
+COPY package.json ./
 RUN yarn install 
 
 FROM dependencies AS build 
 WORKDIR /app 
+COPY . /app
 RUN yarn build 
   
 FROM nginx:1.16-alpine 
