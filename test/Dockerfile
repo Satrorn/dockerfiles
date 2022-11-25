@@ -5,21 +5,24 @@ ENV VERSION 0.1.6
 
 RUN apk add --no-cache bash git curl wget jq make zip unzip
 
-WORKDIR /app
+WORKDIR /data
 
 # 克隆源码运行安装
-RUN git clone https://github.com/CareyWang/sub-web.git /app/sub-web
+RUN git clone https://github.com/CareyWang/sub-web.git /data/sub-web
    
-COPY conf/.env /app/sub-web/.env
-COPY conf/Subconverter.vue /app/sub-web/src/views/Subconverter.vue
- 
-WORKDIR /app 
-COPY /app/sub-web/package.json ./app 
+COPY conf/.env /data/sub-web/.env
+COPY conf/Subconverter.vue /data/sub-web/src/views/Subconverter.vue
+
+# ---- Dependencies ----
+FROM node:16-alpine AS dependencies
+WORKDIR /app
+COPY /data/sub-web/package.json ./
 RUN yarn install
 
+# ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY /app/sub-web/. /app
+COPY . /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
