@@ -23,7 +23,7 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 WORKDIR /app
 
 RUN set -eux \
-    && cp -rf /sub-web/package.json /app \
+    && cp /sub-web/package.json /app/package.json \
     && yarn install
 
 FROM dependencies AS build
