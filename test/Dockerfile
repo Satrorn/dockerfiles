@@ -16,8 +16,6 @@ RUN set -eux && \
 RUN set -eux \
     && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web \
     && cp -rf /sub-web/* /app
-    && cp conf/sub-web/.env /app/.env
-    && cp conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue    
 
 WORKDIR /app
 RUN yarn install
