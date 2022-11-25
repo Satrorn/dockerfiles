@@ -2,23 +2,6 @@ FROM node:lts-alpine AS dependencies
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
 ENV VERSION 0.1.6
 
-# 镜像变量
-ARG PKG_DEPS="\
-      zsh \
-      bash \
-      bind-tools \
-      iproute2 \
-      git \
-      vim \
-      tzdata \
-      curl \
-      wget \
-      lsof \
-      zip \
-      unzip \
-      ca-certificates"
-ENV PKG_DEPS=$PKG_DEPS
-
 # ***** 安装依赖 *****
 RUN set -eux && \
    # 修改源地址
