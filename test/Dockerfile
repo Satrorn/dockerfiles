@@ -14,20 +14,18 @@ RUN set -eux && \
 
 # 克隆源码运行安装
 RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web/app
-
-# 拷贝配置文件	
-COPY conf/sub-web/.env /sub-web/app/.env
-COPY conf/sub-web/Subconverter.vue /sub-web/app/src/views/Subconverter.vue
+    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web \
+    && cp -rf /sub-web/* /app
+    && cp conf/sub-web/.env /app/.env
+    && cp conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue    
 
 WORKDIR /app
-COPY package.json ./
 RUN yarn install
 
 # ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY . /app
+COPY /app/* /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
