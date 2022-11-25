@@ -23,7 +23,7 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 # 工作目录
 WORKDIR /app
 
-COPY sub-web/package.json /app
+COPY /sub-web/package.json /app
 RUN yarn install
 
 # ##############################################################################
