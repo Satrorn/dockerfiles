@@ -20,19 +20,17 @@ RUN set -eux \
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
+WORKDIR /app
+COPY /sub-web/package.json ./
+RUN yarn install
+
+# ---- Build ----
 FROM dependencies AS build
-WORKDIR /sub-web
+WORKDIR /app
+COPY -r /sub-web/. /app
+RUN yarn build
 
-RUN npm install && npm run build
-
-# 指定创建的基础镜像
-FROM danxiaonuo/nginx:latest
-
-# 工作目录
-WORKDIR /www
-
-# 拷贝资源文件
-COPY --from=build /sub-web/dist /www
-
-# 启动命令
-CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:1.16-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD [ "nginx", "-g", "daemon off;" ]
