@@ -14,17 +14,16 @@ RUN set -eux && \
 
 # 克隆源码运行安装
 RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web \
-    && cp -rf /sub-web/* /app
+    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web
 
-WORKDIR /app
+WORKDIR /sub-web
 RUN yarn install
 
 # ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
 RUN set -eux \
-    && cp -rf /sub-web/* /app
+    && cp -r /sub-web/* /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
