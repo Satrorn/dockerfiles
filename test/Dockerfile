@@ -14,8 +14,7 @@ RUN set -eux && \
 
 # 克隆源码运行安装
 RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web /sub-web \
-    && cp -rf /sub-web/* /app
+    && git clone --progress https://github.com/CareyWang/sub-web.git /app \
     
 WORKDIR /app
 RUN npm install
