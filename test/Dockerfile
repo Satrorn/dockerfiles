@@ -19,18 +19,14 @@ RUN set -eux \
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
-# 工作目录
-WORKDIR /app
-
-RUN set -eux \
-    && cp /sub-web/package.json /app/package.json \
-    && yarn install
 
 FROM dependencies AS build
 WORKDIR /app
 RUN set -eux \
     && cp -rf /sub-web/* /app \
+    && yarn install \
     && yarn build
+    
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
