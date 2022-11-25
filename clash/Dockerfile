@@ -50,8 +50,6 @@ RUN set -eux \
     && wget --no-check-certificate -O /tmp/clash.gz $CLASH_DOWN \
     && cd /tmp && gzip -d clash.gz && mv clash / \
     && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
-    && curl -o /config.yaml 'https://api.loii.ml/sub?target=clash&url=https%3A%2F%2Fxn--4gq62f52gdss.com%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3Dv61eheqezdgs3uvhztpmq4d7u65s40e1&insert=false&config=config%2FPart.ini'
-
 #
 # ##############################################################################
 
@@ -91,8 +89,7 @@ ENV PKG_DEPS=$PKG_DEPS
 # 拷贝clash
 COPY --from=builder /Country.mmdb /root/.config/clash/
 COPY --from=builder /clash /usr/bin/clash
-COPY --from=builder /config.yaml /root/.config/clash/
-#COPY ["./conf/clash/config.yaml", "/root/.config/clash/"]
+COPY ["./conf/clash/config.yaml", "/root/.config/clash/"]
 # ***** 安装依赖 *****
 RUN set -eux && \
    # 修改源地址
