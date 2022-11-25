@@ -1,6 +1,7 @@
 FROM node:lts-alpine AS dependencies
+
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
-ENV VERSION 0.1.6
+ENV VERSION 0.1.7
 
 # ***** 安装依赖 *****
 RUN set -eux && \
@@ -19,14 +20,12 @@ RUN set -eux \
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
-
 FROM dependencies AS build
 WORKDIR /app
 RUN set -eux \
-    && cp -rf /sub-web/* /app \
-    && yarn install \
-    && yarn build
-    
+    && cp -rf /sub-web/* /app
+RUN yarn install
+RUN yarn build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
