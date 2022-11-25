@@ -14,19 +14,14 @@ RUN set -eux && \
 
 # 克隆源码运行安装
 RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web
+    && git clone --progress https://github.com/CareyWang/sub-web /sub-web
 
 WORKDIR /sub-web
-RUN yarn install
-
-# ---- Build ----
-FROM dependencies AS build
-WORKDIR /app
-RUN set -eux \
-    && cp -r /sub-web/* /app
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
+COPY . /app
 EXPOSE 80
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD [ "sh", "-c", "/app/start.sh" ]
