@@ -44,5 +44,6 @@ RUN set -eux \
 
 WORKDIR /app
 
-RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web.git /sub-web
+# 拷贝配置文件	
+COPY conf/sub-web/.env /sub-web/.enva
+COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconvertera.vue
