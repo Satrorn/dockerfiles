@@ -49,7 +49,7 @@ RUN set -eux \
     && export CLASH_DOWN=$(curl -s https://api.github.com/repos/Dreamacro/clash/releases | jq -r .[].assets[].browser_download_url| grep -i 'premium'| grep -i 'clash-linux-amd64') \
     && wget --no-check-certificate -O /tmp/clash.gz $CLASH_DOWN \
     && cd /tmp && gzip -d clash.gz && mv clash / \
-    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
+    && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb
 #
 # ##############################################################################
 
