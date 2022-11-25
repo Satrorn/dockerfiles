@@ -23,5 +23,5 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 WORKDIR /app
 
 RUN set -eux \
-    && cp /sub-web/* /app \
+    && cp -rf /sub-web/* /app \
     && yarn install
