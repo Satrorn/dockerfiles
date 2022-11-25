@@ -9,5 +9,5 @@ RUN git clone --progress https://github.com/CareyWang/sub-web app
 
 # 指定创建的基础镜像
 FROM alpine:latest
-COPY --from=builder /app /sun
-RUN cd /sun && npm install && npm run build
+COPY --from=builder /app /app
+RUN cd /app && npm install && npm run build
