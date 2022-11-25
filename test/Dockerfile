@@ -23,5 +23,16 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 WORKDIR /app
 
 RUN set -eux \
-    && cp -rf /sub-web/* /app \
+    && cp -rf /sub-web/package.json /app \
     && yarn install
+
+FROM dependencies AS build
+WORKDIR /app
+RUN set -eux \
+    && cp -rf /sub-web/* /app \
+    && yarn build
+
+FROM nginx:1.16-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD [ "nginx", "-g", "daemon off;" ]
