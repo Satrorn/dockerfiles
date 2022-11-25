@@ -21,10 +21,8 @@ COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 FROM dependencies AS build
-WORKDIR /app
-RUN set -eux \
-    && cp -rf /sub-web/* /app
-    
+WORKDIR /sub-web
+
 RUN npm install && npm run build
 
 # 指定创建的基础镜像
@@ -34,10 +32,7 @@ FROM danxiaonuo/nginx:latest
 WORKDIR /www
 
 # 拷贝资源文件
-COPY --from=build /app/dist /www
-
-# 容器信号处理
-STOPSIGNAL SIGQUIT
+COPY --from=build /sub-web/dist /www
 
 # 启动命令
 CMD ["nginx", "-g", "daemon off;"]
