@@ -14,7 +14,7 @@ RUN set -eux && \
 
 # 克隆源码运行安装
 RUN set -eux \
-    && git clone --progress https://github.com/CareyWang/sub-web /app
+    && git clone --progress https://github.com/CareyWang/sub-web /app \
     && cd /app && npm install && npm run build
 
 FROM nginx:1.16-alpine
