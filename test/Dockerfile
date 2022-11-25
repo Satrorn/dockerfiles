@@ -16,7 +16,7 @@ RUN git clone https://github.com/CareyWang/sub-web.git /sub-web
 # ---- Dependencies ----
 FROM node:16-alpine AS dependencies
 WORKDIR /app
-COPY /data/sub-web/package.json ./
+COPY /sub-web/package.json ./
 RUN yarn install
 
 # ---- Build ----
