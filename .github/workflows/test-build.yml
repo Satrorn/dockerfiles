@@ -46,7 +46,7 @@ jobs:
     
     env: # 镜像名，也是git仓库中的文件夹名 
       #IMAGE_NAME: ${{ github.event.inputs.project }}
-      IMAGE_NAME: subweb # 自动时填写（仅填写一次）
+      IMAGE_NAME: test # 自动时填写（仅填写一次）
       # Dockerfile文件名称，在这里修改 
       DOCKERFILE_NAME: Dockerfile
       #TAGS: ${{ github.event.inputs.tag }}
