@@ -13,9 +13,11 @@ RUN set -eux && \
    apk add --no-cache --clean-protected git curl wget bash
 
 # 克隆源码运行安装
-RUN set -eux && \
-   git clone --progress https://github.com/CareyWang/sub-web /app && \
-   cd /app && npm install && npm run build
+RUN set -eux \
+    && git clone --progress https://github.com/CareyWang/sub-web /app \
+    && cd /app \
+    && npm install \
+    && npm run build
 
 FROM nginx:1.16-alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
