@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： [subtestq]
+name: 构建镜像： [test]
 
 # 设置触发条件
 on:
@@ -8,7 +8,7 @@ on:
 #      project:
 #        description: 'project'
 #        required: true
-#        default: 'zh'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
+#        default: 'test'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
 #      tag:
 #        description: 'tag'
 #        required: true
@@ -23,8 +23,8 @@ on:
   push:
 #    branches: [ master ]
     paths:
-      - 'subweb/Dockerfile'
-      - '.github/workflows/su-build.yml'
+      - 'Dockerfile'
+#      - '.github/workflows/test-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
@@ -34,8 +34,8 @@ on:
 #    - cron: '0 16 * * *'
 
 # 点击star时开始任务
-  watch:
-    types: started
+#  watch:
+#    types: started
 
  # 任务集
 jobs:
