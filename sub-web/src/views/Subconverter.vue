@@ -255,224 +255,54 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "localhost:25500 本地版": "http://localhost:25500/sub?",
-          "sub-beta.vercel.app": "https://sub-beta.vercel.app/sub?",
-          "subcon.dlj.tf(subconverter作者提供-稳定)":
-            "https://subcon.dlj.tf/sub?",
-          "api.dler.io(sub作者&lhie1提供-稳定)": "https://api.dler.io/sub?",
-          "api.wcc.best(sub-web作者提供-稳定)": "https://api.wcc.best/sub?",
-          "sub.id9.cc(品云转换)": "https://sub.id9.cc/sub?",
+          "✈域名つ站": "https://api.loii.ml/sub?", 
+          "✈区域つ站": "http://192.168.2.31:25500/sub?",
+          "㏇1": "https://api.v1.mk/sub?",
+          "㏇2": "https://sub.d1.mk/sub?",
+          "㏇3": "https://api.tsutsu.one/sub?",
+          "㏇4": "https://v.id9.cc/sub?",
+          "㏇5": "https://www.nameless13.com/sub?",
+          "㏇6": "https://sub.xeton.dev/sub?",
+          "㏇7": "https://api.dler.io/sub?",
+          "㏇8": "https://api.asnil.ml/sub?",          
+          "㏇9": "https://api.asnil.tk/sub?",
         },
         backendOptions: [
-          { value: "http://localhost:25500/sub?" },
-          { value: "https://sub-beta.now.sh/sub?" },
-          { value: "https://subcon.dlj.tf/sub?" },
-          { value: "https://api.dler.io/sub?" },
-          { value: "https://api.wcc.best/sub?" },
-          { value: "https://sub.id9.cc/sub?" },
+          {value: "https://api.loii.ml/sub?" },
+          {value: "http://192.168.2.31:25500/sub?"},
+          {value: "https://api.v1.mk/sub?"},
+          {value: "https://sub.d1.mk/sub?"},
+          {value: "https://api.tsutsu.one/sub?"},
+          {value: "https://v.id9.cc/sub?"},
+          {value: "https://www.nameless13.com/sub?"},
+          {value: "https://sub.xeton.dev/sub?"},
+          {value: "https://api.dler.io/sub?"},
+          {value: "https://api.asnil.ml/sub?"},          
+          {value: "https://api.asnil.tk/sub?"},  
         ],
         remoteConfig: [
-          {
-            label: "默认",
+        {
+            label: "✈",
             options: [
               {
-                label: "不选，由接口提供方提供",
-                value: ""
-              }
-            ]
-          },
-          {
-            label: "ACL4SSR",
-            options: [
-              {
-                label: "ACL4SSR_Online 默认版 分组比较全(与Github同步)",
+                label: "✈域名つ站",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini"
+                  "config/Part.ini"
               },
               {
-                label: "ACL4SSR_Online_AdblockPlus 更多去广告(与Github同步)",
+                label: "在线つ站",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_AdblockPlus.ini"
+                  "https://loip.ml/link/conf/PartMini.ini"
               },
               {
-                label: "ACL4SSR_Online_NoAuto 无自动测速(与Github同步)",
+                label: "精简つ站",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_NoAuto.ini"
+                  "config/Mini.ini"
               },
               {
-                label: "ACL4SSR_Online_NoReject 无广告拦截规则(与Github同步)",
+                label: "完整つ站",
                 value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_NoReject.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini 精简版(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_AdblockPlus.ini 精简版 更多去广告(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_AdblockPlus.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_NoAuto.ini 精简版 不带自动测速(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_Fallback.ini 精简版 带故障转移(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_Fallback.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_MultiMode.ini 精简版 自动测速、故障转移、负载均衡(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_MultiMode.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Mini_MultiCountry.ini 精简版 带港美日国家(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini_MultiCountry.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full 全分组 重度用户使用(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_MultiMode.ini 全分组 多模式 重度用户使用(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_MultiMode.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_NoAuto.ini 全分组 无自动测速 重度用户使用(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_AdblockPlus 全分组 重度用户使用 更多去广告(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_Netflix 全分组 重度用户使用 奈飞全量(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_Netflix.ini"
-              },
-              {
-                label: "ACL4SSR_Online_Full_Google 全分组 重度用户使用 谷歌全量(与Github同步)",
-                value:
-                  "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_Google.ini"
-              },
-              {
-                label: "ACL4SSR 本地 默认版 分组比较全",
-                value: "config/ACL4SSR.ini"
-              },
-              {
-                label: "ACL4SSR_Mini 本地 精简版",
-                value: "config/ACL4SSR_Mini.ini"
-              },
-              {
-                label: "ACL4SSR_Mini_NoAuto.ini 本地 精简版+无自动测速",
-                value: "config/ACL4SSR_Mini_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_Mini_Fallback.ini 本地 精简版+fallback",
-                value: "config/ACL4SSR_Mini_Fallback.ini"
-              },
-              {
-                label: "ACL4SSR_BackCN 本地 回国",
-                value: "config/ACL4SSR_BackCN.ini"
-              },
-              {
-                label: "ACL4SSR_NoApple 本地 无苹果分流",
-                value: "config/ACL4SSR_NoApple.ini"
-              },
-              {
-                label: "ACL4SSR_NoAuto 本地 无自动测速 ",
-                value: "config/ACL4SSR_NoAuto.ini"
-              },
-              {
-                label: "ACL4SSR_NoAuto_NoApple 本地 无自动测速&无苹果分流",
-                value: "config/ACL4SSR_NoAuto_NoApple.ini"
-              },
-              {
-                label: "ACL4SSR_NoMicrosoft 本地 无微软分流",
-                value: "config/ACL4SSR_NoMicrosoft.ini"
-              },
-              {
-                label: "ACL4SSR_WithGFW 本地 GFW列表",
-                value: "config/ACL4SSR_WithGFW.ini"
-              }
-            ]
-          },
-          {
-            label: "universal",
-            options: [
-              {
-                label: "No-Urltest",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/no-urltest.ini"
-              },
-              {
-                label: "Urltest",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/universal/urltest.ini"
-              }
-            ]
-          },
-          {
-            label: "customized",
-            options: [
-              {
-                label: "Maying",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/maying.ini"
-              },
-              {
-                label: "Ytoo",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ytoo.ini"
-              },
-              {
-                label: "FlowerCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/flowercloud.ini"
-              },
-              {
-                label: "Nexitally",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/nexitally.ini"
-              },
-              {
-                label: "SoCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/socloud.ini"
-              },
-              {
-                label: "ARK",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ark.ini"
-              },
-              {
-                label: "ssrCloud",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/customized/ssrcloud.ini"
-              }
-            ]
-          },
-          {
-            label: "Special",
-            options: [
-              {
-                label: "NeteaseUnblock(仅规则，No-Urltest)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/netease.ini"
-              },
-              {
-                label: "Basic(仅GEOIP CN + Final)",
-                value:
-                  "https://cdn.jsdelivr.net/gh/SleepyHeeead/subconverter-config@master/remote-config/special/basic.ini"
+                  "config/Full.ini"
               }
             ]
           }
@@ -549,7 +379,7 @@ export default {
   mounted() {
     this.form.clientType = "clash";
     this.form.customBackend = defaultBackend;
-    this.form.remoteConfig = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online.ini";
+    this.form.remoteConfig = "config/Part.ini";
     this.getBackendVersion();
   },
   methods: {
