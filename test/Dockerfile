@@ -23,7 +23,8 @@ RUN yarn install
 # ---- Build ----
 FROM dependencies AS build
 WORKDIR /app
-COPY /app/* /app
+RUN set -eux \
+    && cp -rf /sub-web/* /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
