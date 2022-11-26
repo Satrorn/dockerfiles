@@ -10,7 +10,7 @@ COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 WORKDIR /app
-COPY -r /sub-web/* /app
+COPY -r /sub-web/ /app
 RUN yarn install
 
 #FROM alpine:latest
