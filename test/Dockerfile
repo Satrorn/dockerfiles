@@ -1,4 +1,4 @@
-FROM node:14-alpine AS build
+FROM node:14-alpine AS build
 
 RUN apk add --no-cache bash git curl wget bash zip
 
@@ -8,9 +8,9 @@ COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
 RUN npm install
-RUN nom run build
+RUN npm build
 
 FROM nginx:1.16-alpine
-COPY --from=builder /app/dist/usr/share/nginx/html
+COPY --from=builder /app/dist/ usr/share/nginx/html
 EXPOSE 80
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD [ "nginx", "-g", "daemon  off;" ]
