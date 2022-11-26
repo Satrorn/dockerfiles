@@ -12,7 +12,8 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 # 指定创建的基础镜像
 FROM alpine:latest
 WORKDIR /app
-COPY --from=builder /sub-web/package.json ./
+COPY -r /sub-web/* /app
+COPY /sub-web/package.json /app
 RUN yarn install
 
 #FROM dependencies AS build
