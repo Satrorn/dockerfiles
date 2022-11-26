@@ -51,7 +51,7 @@ RUN set -eux \
     && cd /tmp && gzip -d clash.gz && mv clash / \
     && wget --no-check-certificate -O /Country.mmdb https://github.com/Dreamacro/maxmind-geoip/releases/latest/download/Country.mmdb \
 # 指定订阅配置下载
-    && wget --no-check-certificate -O /config.yaml 'https://suo.yt/1RHKXcg' 
+    && wget --no-check-certificate -O /config.yaml 'https://suo.yt/SK5Yonx'
 
 ####################################################################################################
 #----备用
