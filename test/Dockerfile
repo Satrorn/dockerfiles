@@ -9,14 +9,12 @@ RUN git clone --progress https://github.com/CareyWang/sub-web sub-web
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
-# 指定创建的基础镜像
-FROM alpine:latest
 WORKDIR /app
 COPY -r /sub-web/* /app
 COPY /sub-web/package.json /app
 RUN yarn install
 
-#FROM dependencies AS build
+#FROM alpine:latest
 #WORKDIR /app
 #COPY . /app
 #RUN yarn build
