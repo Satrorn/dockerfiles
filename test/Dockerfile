@@ -9,9 +9,9 @@ RUN git clone --progress https://github.com/CareyWang/sub-web sub-web
 COPY conf/sub-web/.env /sub-web/.env
 COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
-WORKDIR /app
-COPY -r /sub-web/ /app
-RUN yarn install
+RUN set -eux \
+    && cp /sub-web/package.json /app \
+    && yarn install
 
 #FROM alpine:latest
 #WORKDIR /app
