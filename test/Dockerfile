@@ -11,7 +11,6 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 WORKDIR /app
 COPY -r /sub-web/* /app
-COPY /sub-web/package.json /app
 RUN yarn install
 
 #FROM alpine:latest
