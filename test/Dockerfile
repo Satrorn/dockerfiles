@@ -13,7 +13,7 @@ COPY conf/sub-web/Subconverter.vue /sub-web/src/views/Subconverter.vue
 FROM alpine:latest
 COPY --from=builder /sub-web /app
 WORKDIR /app
-#RUN npm install && npm run build
+RUN npm install && npm run build
 
 #EXPOSE 80 
 #CMD [ "nginx", "-g", "daemon off;" ]
