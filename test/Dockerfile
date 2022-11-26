@@ -12,3 +12,6 @@ FROM alpine:latest
 COPY --from=builder /sub-web /app
 WORKDIR /app
 #RUN npm install && npm run build
+
+EXPOSE 80 
+CMD [ "nginx", "-g", "daemon off;" ]
