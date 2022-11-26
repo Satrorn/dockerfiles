@@ -6,6 +6,8 @@ RUN apk add --no-cache bash git curl wget bash zip
 
 # 克隆源码运行安装
 RUN git clone --progress https://github.com/CareyWang/sub-web sub-web
+COPY conf/.env /sub-web/.env
+COPY conf/Subconverter.vue /sub-web/src/views/Subconverter.vue
 
 # 指定创建的基础镜像
 FROM alpine:latest
