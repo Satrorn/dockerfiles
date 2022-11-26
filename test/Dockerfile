@@ -11,4 +11,4 @@ RUN git clone --progress https://github.com/CareyWang/sub-web sub-web
 FROM alpine:latest
 COPY --from=builder /sub-web /app
 WORKDIR /app
-RUN npm install && npm run build
+#RUN npm install && npm run build
