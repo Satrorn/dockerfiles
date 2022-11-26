@@ -1,8 +1,7 @@
 FROM node:14-alpine AS build
-# ***** 安装依赖 *****
+
 RUN apk add --no-cache bash git curl wget bash zip
 
-# 克隆源码运行安装
 RUN git clone --progress https://github.com/CareyWang/sub-web.git /ap
 COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
