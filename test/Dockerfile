@@ -6,7 +6,7 @@ RUN git clone --progress https://github.com/CareyWang/sub-web.git /ap
 COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
-WORKDIR/app
+WORKDIR /app
 RUN npm install
 RUN npm run build
 
