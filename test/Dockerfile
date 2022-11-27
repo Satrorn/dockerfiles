@@ -1,6 +1,6 @@
 FROM node:14-alpine AS build
 
-RUN apk add --no-cache bash git curl wget bash zip
+RUN apk add --no-cache git
 
 RUN git clone --progress https://github.com/CareyWang/sub-web.git /app
 COPY conf/sub-web/.env /app/.env
