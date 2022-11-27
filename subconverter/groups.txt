@@ -1,5 +1,5 @@
-🎭 全球站点,rules/Lins/Line.list
-🎭 国外网站,rules/Lins/Country.list
+🎭 全球站点,rules/ACL4SSR/Clash/Line.list
+🎭 国外网站,rules/ACL4SSR/Clash/Country.list
 🎯 全球直连,rules/ACL4SSR/Clash/LocalAreaNetwork.list
 🎯 全球直连,rules/ACL4SSR/Clash/UnBan.list
 🍃 广告净化,rules/ACL4SSR/Clash/BanAD.list
