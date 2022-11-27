@@ -7,8 +7,8 @@ COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
-RUN npm install
-RUN npm build
+RUN yarn install
+RUN yarn build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app /app
