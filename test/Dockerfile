@@ -7,11 +7,11 @@ COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
-COPY --from=builder /app /app
 RUN npm install
 RUN npm build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist usr/share/nginx/html
+COPY --from=builder /app /app
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon  off;" ]
