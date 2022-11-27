@@ -27,18 +27,17 @@ on:
       - 'subweb/conf/.env'
       - 'subweb/conf/Subconverter.vue'
       - '.github/workflows/subweb-build.yml'
-#      - '.github/workflows/subweb-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
 
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
-#  schedule:
-#    - cron: '0 16 * * *'
+  schedule:
+    - cron: '0 16 * * *'
 
 # 点击star时开始任务
-#  watch:
-#    types: started
+  watch:
+    types: started
 
  # 任务集
 jobs:
