@@ -1,14 +1,18 @@
-FROM node:16-alpine AS dependencies
+FROM node:14-alpine AS build
+LABEL maintainer="Satrorn <satrorn@gmail.com>"
+ENV VERSION 0.1.1
 
-RUN apk add --no-cache git
-
-RUN git clone https://github.com/CareyWang/sub-web.git /app
-COPY conf/.env /app/.env
-COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
+RUN set -eux \
+    && apk add --no-cache git \
+    && git clone https://github.com/CareyWang/sub-web.git /app \
+    && cp conf/.env /app/.env \
+    && cp conf/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
-RUN yarn install
-RUN yarn build
+
+RUN set -eux \
+    && yarn install \
+    && yarn build
 
 FROM nginx:1.16-alpine
 COPY --from=builder /app/dist usr/share/nginx/html
