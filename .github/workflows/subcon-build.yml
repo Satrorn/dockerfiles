@@ -20,11 +20,11 @@ on:
 
 # 编辑文件触发开始编译
 # master分支的push操作会触发当前脚本的执行
-  push:
+#  push:
 #    branches: [ master ]
-    paths:
-      - 'subconverter/Dockerfile'
-      - '.github/workflows/subcon-build.yml'
+#    paths:
+#      - 'subconverter/Dockerfile'
+#      - '.github/workflows/subcon-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
