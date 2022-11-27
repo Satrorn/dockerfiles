@@ -13,7 +13,7 @@ COPY conf/ /base/config
 COPY pref.yml /base
 COPY groups.txt rulesets.txt /base/snippets/
 COPY all_base.tpl Parents.yml /base/base/
-COPY Country.list Line.list /base/rules/ACL4SSR/
+COPY Country.list Line.list /base/rules/ACL4SSR/Clash/
 
 EXPOSE 25500
 
