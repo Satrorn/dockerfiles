@@ -12,12 +12,12 @@ WORKDIR /app
 RUN yarn install
 
 # ---- Build ----
-FROM dependencies AS build
+FROM dependencies AS builder
 WORKDIR /app
-COPY --from=build /app /app
+COPY --from=builder /app /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
-COPY --from=build /app/dist usr/share/nginx/html
+COPY --from=builder /app/dist usr/share/nginx/html
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
