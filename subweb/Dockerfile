@@ -1,9 +1,9 @@
-FROM node:14-alpine AS build
+FROM node:14-alpine AS builder
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
-ENV VERSION 0.1.1
+ENV VERSION 0.1.2
 
 RUN apk add --no-cache git
-RUN git clone --progress https://github.com/CareyWang/sub-web.git /app
+RUN git clone https://github.com/CareyWang/sub-web.git /app
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
 
@@ -13,6 +13,6 @@ RUN yarn install
 RUN yarn build
 
 FROM nginx:1.16-alpine
-COPY --from=build /app/dist usr/share/nginx/html
+COPY --from=builder /app/dist usr/share/nginx/html
 EXPOSE 80
 CMD [ "nginx", "-g", "daemon off;" ]
