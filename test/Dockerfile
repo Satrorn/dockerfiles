@@ -7,6 +7,7 @@ COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
 WORKDIR /app
+COPY --from=builder /app /app
 RUN npm install
 RUN npm build
 
