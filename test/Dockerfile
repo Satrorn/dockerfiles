@@ -12,7 +12,7 @@ RUN yarn install
 
 FROM node:14-alpine AS build
 WORKDIR /app
-COPY /app /app
+COPY --from=build /app /app
 RUN yarn build
 
 FROM nginx:1.16-alpine
