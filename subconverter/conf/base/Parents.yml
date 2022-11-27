@@ -9,32 +9,44 @@ external-controller: :9090
 {% if default(request.adg, "true") == "true" or exists("request.adg.port") %}
 dns:
   enable: true
+  # DNS开关(false/true)
   ipv6: true
-  listen: 127.0.0.1:{{ default(request.adg.port, "5450") }}
-  enhanced-mode: redir-host
+  # IP6解析开关；如果为false，将返回ip6结果为空
+  listen: 0.0.0.0:{{ default(request.adg.port, "5450") }}
+  # DNS监听地址
   default-nameserver:
-    - 119.29.29.29
-    - 119.28.28.28
-    - 1.0.0.1
-    - 208.67.222.222
-    - 1.2.4.8
-  nameserver:
-    - https://i.passcloud.xyz/dns-query
-    - tls://i.passcloud.xyz:5432
+  # 解析非IP的dns用的dns服务器,只支持纯IP
     - 223.5.5.5
-    - 180.76.76.76
     - 119.29.29.29
-    - 117.50.11.11
-    - 117.50.10.10
-    - 114.114.114.114
-  fallback:
-    - tls://8.8.8.8:853
-    - tls://8.8.4.4:853
-    - https://149.112.112.112:5053/dns-query
-    - https://9.9.9.9:5053/dns-query
-    - https://dns.quad9.net:5053/dns-query
-  fallback-filter:
-    geoip: false
-    ipcidr:
-      - 240.0.0.0/4
+  enhanced-mode: fake-ip
+  # DNS模式(redir-host/fake-ip)
+  fake-ip-range: 198.18.0.1/16
+  # Fake-IP解析地址池
+  fake-ip-filter:
+  # Fake-ip过滤，列表中的域名返回真实ip
+  # Local Area Network
+    - '*.lan'
+  # Stun Services
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+  # Google Voices
+    - 'lens.l.google.com'
+  # Nintendo Switch
+    - '*.n.n.srv.nintendo.net'
+  # PlayStation
+    - '+.stun.playstation.net'
+  # XBox
+    - 'xbox.*.*.microsoft.com'
+    - '*.*.xboxlive.com'
+  # Microsoft
+    - '*.msftncsi.com'
+    - '*.msftconnecttest.com'
+  # Bilibili CDN
+    - '*.mcdn.bilivideo.cn'
+  nameserver:
+  # 默认DNS服务器，支持udp/tcp/dot/doh/doq
+    - https://223.6.6.6/dns-query
+    - https://doh.pub/dns-query
 {% endif %}
