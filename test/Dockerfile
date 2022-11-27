@@ -6,11 +6,12 @@ RUN git clone --progress https://github.com/CareyWang/sub-web.git /app
 COPY conf/sub-web/.env /app/.env
 COPY conf/sub-web/Subconverter.vue /app/src/views/Subconverter.vue
 
+FROM node:14-alpine AS build
 WORKDIR /app
 COPY --from=build /app/package.json /app
 RUN yarn install
 
-FROM dependencies AS build
+FROM node:14-alpine AS build
 WORKDIR /app
 COPY --from=build /app /app
 RUN yarn build
