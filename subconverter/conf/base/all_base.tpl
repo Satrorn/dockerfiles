@@ -7,23 +7,6 @@ allow-lan: {{ default(global.clash.allow_lan, "true") }}
 mode: Rule
 log-level: {{ default(global.clash.log_level, "info") }}
 external-controller: :9090
-{% if default(request.clash.dns, "") == "1" %}
-dns:
-  enabled: true
-  listen: 0.0.0.0:5450
-  ipv6: true
-  enhanced-mode: redir-host
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://dns.pub/dns-query
-  fallback:
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
-  fallback-filter:
-    geoip: true
-    ipcidr:
-      - 240.0.0.0/4
-{% endif %}
 {% if local.clash.new_field_name == "true" %}
 proxies: ~
 proxy-groups: ~
