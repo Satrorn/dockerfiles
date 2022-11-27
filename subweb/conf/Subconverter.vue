@@ -90,21 +90,21 @@
                     <el-popover placement="bottom" v-model="form.extraset">
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.emoji" label="Emoji"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.new_name" label="Clash新字段名"></el-checkbox></el-col>                        
+                        <el-col :span="12"><el-checkbox v-model="form.new_name" label="Clash新字段名"></el-checkbox></el-col>
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.udp" @change="needUdp = true" label="启用 UDP"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.tfo" label="启用 TFO"></el-checkbox></el-col>                        
+                        <el-col :span="12"><el-checkbox v-model="form.tfo" label="启用 TFO"></el-checkbox></el-col>
                       <el-row>
                         <el-checkbox v-model="form.scv" label="跳过证书验证"></el-checkbox>
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.appendType" label="插入节点类型"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.sort" label="排序节点"></el-checkbox></el-col>                        
+                        <el-col :span="12"><el-checkbox v-model="form.sort" label="排序节点"></el-checkbox></el-col>
                       </el-row>
                       <el-row :gutter="10">
                         <el-col :span="12"><el-checkbox v-model="form.fdn" label="过滤不支持节点"></el-checkbox></el-col>
-                        <el-col :span="12"><el-checkbox v-model="form.expand" label="展开规则全文"></el-checkbox></el-col>                        
+                        <el-col :span="12"><el-checkbox v-model="form.expand" label="展开规则全文"></el-checkbox></el-col>
                       </el-row>
                       <el-button slot="reference">更多选项</el-button>
                     </el-popover>
@@ -248,30 +248,30 @@ export default {
           "Shadowsocks(SIP002)": "ss",
           "Shadowsocks Android(SIP008)": "sssub",
           ShadowsocksR: "ssr",
-          ShadowsocksD: "ssd",          
+          ShadowsocksD: "ssd",
           V2Ray: "v2ray",
           Trojan: "trojan",
           "混合订阅（mixed）": "mixed",
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "1111换1": "http://192.168.2.31:25500/sub?", 
-          "2222換2": "http://192.168.2.37:25500/sub?",
           "域名つ站": "https://api.loii.ml/sub?",
-          "肥羊增强": "https://api.v1.mk/sub?",
-          "肥羊备用": "https://sub.d1.mk/sub?",
-          "つつ多地": "https://api.tsutsu.one/sub?",
-          "品云提供": "https://v.id9.cc/sub?",
-          "nameless13": "https://www.nameless13.com/sub?",
-          "subconverter": "https://sub.xeton.dev/sub?",
-          "lhie1": "https://api.dler.io/sub?",
-          "heroku": "https://api.asnil.ml/sub?",          
-          "render": "https://api.asnil.tk/sub?",
+          "常域つ站": "https://api.ipcn.ml:46/sub?",
+          "区域つ站": "http://192.168.2.31:25500/sub?",
+          "1": "https://api.v1.mk/sub?",
+          "2": "https://sub.d1.mk/sub?",
+          "3": "https://api.tsutsu.one/sub?",
+          "4": "https://v.id9.cc/sub?",
+          "5": "https://www.nameless13.com/sub?",
+          "6": "https://sub.xeton.dev/sub?",
+          "7": "https://api.dler.io/sub?",
+          "8": "https://api.asnil.ml/sub?",
+          "9": "https://api.asnil.tk/sub?",
         },
         backendOptions: [
-          {value: "http://192.168.2.31:25500/sub?" },
-          {value: "http://192.168.2.37:25500/sub?"},   
-          {value: "https://api.loii.ml/sub?"},
+          {value: "https://api.loii.ml/sub?" },
+          {value: "https://api.ipcn.ml:46/sub?"},
+          {value: "http://192.168.2.31:25500/sub?"},
           {value: "https://api.v1.mk/sub?"},
           {value: "https://sub.d1.mk/sub?"},
           {value: "https://api.tsutsu.one/sub?"},
@@ -279,32 +279,32 @@ export default {
           {value: "https://www.nameless13.com/sub?"},
           {value: "https://sub.xeton.dev/sub?"},
           {value: "https://api.dler.io/sub?"},
-          {value: "https://api.asnil.ml/sub?"},          
-          {value: "https://api.asnil.tk/sub?"},  
+          {value: "https://api.asnil.ml/sub?"},
+          {value: "https://api.asnil.tk/sub?"},
         ],
         remoteConfig: [
         {
-            label: "规则版本",
+            label: "-",
             options: [
               {
-                label: "自用版",
+                label: "域名つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "精简版",
+                label: "在线つ站",
+                value:
+                  "https://loip.ml/link/conf/PartMini.ini"
+              },
+              {
+                label: "精简つ站",
                 value:
                   "config/Mini.ini"
               },
               {
-                label: "完整版",
+                label: "完整つ站",
                 value:
                   "config/Full.ini"
-              },
-              {
-                label: "在线版",
-                value:
-                  "https://loip.ml/link/conf/PartMini.ini"
               }
             ]
           }
