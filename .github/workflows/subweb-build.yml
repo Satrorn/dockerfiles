@@ -1,5 +1,5 @@
 # 利用GitHub Action自动构建多框架的docker镜像
-name: 构建镜像： [sub-web]
+name: 构建镜像： [subweb]
 
 # 设置触发条件
 on:
@@ -8,7 +8,7 @@ on:
 #      project:
 #        description: 'project'
 #        required: true
-#        default: 'sub-web'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
+#        default: 'subweb'  # 手动时填写镜像名，也是git仓库中的文件夹名 （仅填写一次）
 #      tag:
 #        description: 'tag'
 #        required: true
@@ -23,21 +23,22 @@ on:
   push:
 #    branches: [ master ]
     paths:
-      - 'sub-web/Dockerfile'
-      - 'sub-web/.env'
-      - 'sub-web/src/views/Subconverter.vue'
-      - '.github/workflows/zh-build.yml'
+      - 'subweb/Dockerfile'
+      - 'subweb/conf/.env'
+      - 'subweb/conf/Subconverter.vue'
+      - '.github/workflows/subweb-build.yml'
+#      - '.github/workflows/subweb-build.yml'
 # master分支的pr操作会触发当前脚本的执行
 #  pull_request:
 #    branches: [ master ]
 
 # 定时任务,分时日月年,为国际标准时间16点,对应中国时间0点
-  schedule:
-    - cron: '0 16 * * *'
+#  schedule:
+#    - cron: '0 16 * * *'
 
 # 点击star时开始任务
-  watch:
-    types: started
+#  watch:
+#    types: started
 
  # 任务集
 jobs:
@@ -45,11 +46,11 @@ jobs:
     # 选择虚拟环境
     runs-on: ubuntu-latest
     name: 基本信息
-    
-    env: # 镜像名，也是git仓库中的文件夹名 
+
+    env: # 镜像名，也是git仓库中的文件夹名
       #IMAGE_NAME: ${{ github.event.inputs.project }}
-      IMAGE_NAME: sub-web # 自动时填写（仅填写一次）
-      # Dockerfile文件名称，在这里修改 
+      IMAGE_NAME: subweb # 自动时填写（仅填写一次）
+      # Dockerfile文件名称，在这里修改
       DOCKERFILE_NAME: Dockerfile
       #TAGS: ${{ github.event.inputs.tag }}
       TAGS: latest
@@ -112,7 +113,7 @@ jobs:
 
           echo "auto_update_tag=${AUTO_UPDATE_TAG}" >> $GITHUB_OUTPUT
           echo "auto_update_ali=${AUTO_UPDATE_ALI}" >> $GITHUB_OUTPUT
-          
+
       # 登录到DOCKERHUB
       - name: 登陆镜像站
         uses: docker/login-action@v2
@@ -140,7 +141,7 @@ jobs:
             ${{ steps.prepare.outputs.ali_latest }}
 #            ${{ steps.prepare.outputs.auto_update_tag }}
 #            ${{ steps.prepare.outputs.auto_update_ali }}
-            
+
       # 同步简介
       - name: 维护信息
         uses: ms-jpq/sync-dockerhub-readme@v1
