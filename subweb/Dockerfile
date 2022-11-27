@@ -1,13 +1,13 @@
 FROM node:14-alpine AS builder
 LABEL maintainer="Satrorn <satrorn@gmail.com>"
+
 ENV VERSION 0.1.2
+WORKDIR /app
 
 RUN apk add --no-cache git
 RUN git clone https://github.com/CareyWang/sub-web.git /app
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
-
-WORKDIR /app
 
 RUN yarn install
 RUN yarn build
