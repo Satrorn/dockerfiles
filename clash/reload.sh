@@ -1,2 +1,0 @@
-curl -o /volume1/docker/proxy/clash/config.yaml 'http://192.168.2.31:25500/sub?target=clash&url=https%3A%2F%2Fxn--4gq62f52gdss.com%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3D6fa5aa2bdde3c687e9b1f86eba8d4b9d&insert=false&config=https%3A%2F%2Floip.ml%2Flink%2FParents%2Fconf%2FPartMini.ini'
-curl --location --request PUT 'http://192.168.2.35:9090/configs' --header 'Content-Type: application/json' --data-raw '{"path": "/root/.config/clash/config.yaml"}'
