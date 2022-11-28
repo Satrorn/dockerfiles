@@ -1,0 +1,12 @@
+🔰 PROXY`select`[]🎯 DIRECT`.*
+🎬 Media`select`(香港|HK|hk|🇭🇰|台湾|TW|tw|新加坡|SG|sg|🇸🇬)
+▶️ YouTube`select`[]🔰 PROXY`[]🎬 Media`.*
+🍿 Netflix`select`[]🔰 PROXY`[]🎬 Media`.*
+🐰 DisneyPlus`select`[]🔰 PROXY`[]🎬 Media`.*
+📺 AppleTV`select`[]🔰 PROXY`[]🎬 Media`.*
+🍎 Apple`select`[]🎯 DIRECT`[]🔰 PROXY`.*
+Ⓜ️ Microsoft`select`[]🎯 DIRECT`[]🔰 PROXY`.*
+💰 PayPal`select`[]🎯 DIRECT`[]🔰 PROXY`.*
+🚫 AdBlock`select`[]🎯 DIRECT`[]🔰 PROXY`[]REJECT`.*
+🐟 Other`select`[]🎯 DIRECT`[]🔰 PROXY`.*
+🎯 DIRECT`select`[]DIRECT
