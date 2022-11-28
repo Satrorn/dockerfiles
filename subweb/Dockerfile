@@ -26,7 +26,6 @@ RUN set -eux \
 COPY conf/.env /app/.env
 COPY conf/Subconverter.vue /app/src/views/Subconverter.vue
 
-# 静态页面运行安装
 RUN yarn install
 RUN yarn build
 
