@@ -255,18 +255,18 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "域名つ站": "https://api.loii.ml/sub?",
-          "常域つ站": "https://api.ipcn.ml:46/sub?",
-          "区域つ站": "http://192.168.2.31:25500/sub?",
-          "1": "https://api.v1.mk/sub?",
-          "2": "https://sub.d1.mk/sub?",
-          "3": "https://api.tsutsu.one/sub?",
-          "4": "https://v.id9.cc/sub?",
-          "5": "https://www.nameless13.com/sub?",
-          "6": "https://sub.xeton.dev/sub?",
-          "7": "https://api.dler.io/sub?",
-          "8": "https://api.asnil.ml/sub?",
-          "9": "https://api.asnil.tk/sub?",
+          "✈域名つ站": "https://api.loii.ml/sub?",
+          "✈域名つ端": "https://api.ipcn.ml:46/sub?",
+          "✈区域つ站": "http://192.168.2.31:25500/sub?",
+          "❦": "https://api.v1.mk/sub?",
+          "❧": "https://sub.d1.mk/sub?",
+          "❦": "https://api.tsutsu.one/sub?",
+          "❧": "https://v.id9.cc/sub?",
+          "❦": "https://www.nameless13.com/sub?",
+          "❧": "https://sub.xeton.dev/sub?",
+          "❦": "https://api.dler.io/sub?",
+          "❧": "https://api.asnil.ml/sub?",
+          "❦": "https://api.asnil.tk/sub?",
         },
         backendOptions: [
           {value: "https://api.loii.ml/sub?" },
@@ -287,12 +287,12 @@ export default {
             label: "-",
             options: [
               {
-                label: "域名つ站",
+                label: "✈域名つ站",
                 value:
                   "config/Part.ini"
               },
               {
-                label: "在线つ站",
+                label: "✈在线つ站",
                 value:
                   "https://loip.ml/link/conf/PartMini.ini"
               },
