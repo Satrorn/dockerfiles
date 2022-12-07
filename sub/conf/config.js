@@ -1,7 +1,7 @@
 window.config = {
   siteName: 'Subconverter Web',
   apiUrl: 'http://127.0.0.1:25500',
-  shortUrl: 'https://s.ipcn.ml:46',
+  shortUrl: 'https://s.ops.ci',
   menuItem: [
     {
       title: '首页',
@@ -10,7 +10,7 @@ window.config = {
     },
     {
       title: '短链接',
-      link: 'https://s.ipcn.ml:46',
+      link: 'https://s.ops.ci',
       target: '_blank',
     },
     {
